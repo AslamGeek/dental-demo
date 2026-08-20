@@ -2474,13 +2474,14 @@
           Phone
           <span class="required">*</span>
         </label>
-
-        <input
+                <input
           id="phone"
           name="phone"
           type="tel"
-          inputmode="tel"
+          inputmode="numeric"
           autocomplete="tel"
+          pattern="[0-9]{10,15}"
+          maxlength="15"
           required
         >
 
@@ -2992,11 +2993,18 @@
   const GAS_ENDPOINT =
     "https://script.google.com/macros/s/AKfycbxwm3cTvWDGuxhuyoxswjU8yaefXCEqbeZUzqF9Axy15yOHglB1lqtER4KNZYHFZNRCOg/exec";
 
-  const appointmentForm =
+    const appointmentForm =
     document.getElementById("appointmentForm");
 
   const formStatus =
     document.getElementById("formStatus");
+
+  const phoneInput =
+    document.getElementById("phone");
+
+  phoneInput.addEventListener("input", function() {
+    this.value = this.value.replace(/[^0-9]/g, "");
+  });
 
 
   appointmentForm.addEventListener(
@@ -3024,9 +3032,15 @@
       const message =
         document.getElementById("message").value.trim();
 
-      if (!name || !phone) {
+            if (!name || !phone) {
         formStatus.innerHTML =
           "<strong>Please enter your name and phone number.</strong>";
+        return;
+      }
+
+      if (!/^[0-9]{10,15}$/.test(phone)) {
+        formStatus.innerHTML =
+          "<strong>Please enter a valid phone number (digits only).</strong>";
         return;
       }
 
@@ -3083,15 +3097,11 @@
 
         appointmentForm.reset();
 
-        formStatus.innerHTML = `
-          <strong>✓ Enquiry received</strong>
-          <br>
-          Thank you, ${escapeHtml(name)}.
-          Your enquiry ID is
-          <strong>${escapeHtml(leadId)}</strong>.
+                formStatus.innerHTML = `
+          <strong>✓ Thank you for your enquiry</strong>
           <br>
           We'll contact you shortly to confirm a suitable appointment time.
-        `;
+        `; 
 
       } catch (error) {
 
