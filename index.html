@@ -2565,14 +2565,21 @@
       </p>
 
 
-      <p
-        class="form-status"
-        id="formStatus"
-        role="status"
-        aria-live="polite"
-      ></p>
+      <form
+      class="appointment-form"
+      id="appointmentForm"
+      action="#"
+      method="POST"
+      novalidate
+    >
 
-    </form>
+
+    <iframe
+      name="hiddenLeadFrame"
+      id="hiddenLeadFrame"
+      style="display:none"
+      title="Enquiry submission handler"
+    ></iframe>
 
   </div>
 
@@ -2990,9 +2997,6 @@
      APPOINTMENT FORM
   ========================================================= */
 
-  const GAS_ENDPOINT =
-    "https://script.google.com/macros/s/AKfycbxwm3cTvWDGuxhuyoxswjU8yaefXCEqbeZUzqF9Axy15yOHglB1lqtER4KNZYHFZNRCOg/exec";
-
     const appointmentForm =
     document.getElementById("appointmentForm");
 
@@ -3007,18 +3011,57 @@
   });
 
 
+    const submitButton =
+    appointmentForm.querySelector(
+      'button[type="submit"]'
+    );
+
+  let submissionTimeout = null;
+
+  window.addEventListener("message", function(event) {
+
+    if (
+      !event.data ||
+      event.data.type !== "smilecare-lead-response"
+    ) {
+      return;
+    }
+
+    clearTimeout(submissionTimeout);
+
+    submitButton.disabled = false;
+    submitButton.textContent = "Request Appointment";
+
+    if (event.data.success) {
+
+      appointmentForm.reset();
+
+      formStatus.innerHTML = `
+        <strong>✓ Thank you for your enquiry</strong>
+        <br>
+        We'll contact you shortly to confirm a suitable appointment time.
+      `;
+
+    } else {
+
+      formStatus.innerHTML = `
+        <strong>We couldn't send your enquiry.</strong>
+        <br>
+        Please call or WhatsApp the clinic directly.
+      `;
+
+      console.error(
+        "SmileCare appointment enquiry:",
+        event.data.message
+      );
+
+    }
+
+  });
+
   appointmentForm.addEventListener(
     "submit",
-    async function(event) {
-
-      /* Never allow the browser to navigate to Apps Script. */
-      event.preventDefault();
-      event.stopPropagation();
-
-      const submitButton =
-        appointmentForm.querySelector(
-          'button[type="submit"]'
-        );
+    function(event) {
 
       const name =
         document.getElementById("name").value.trim();
@@ -3026,102 +3069,37 @@
       const phone =
         document.getElementById("phone").value.trim();
 
-      const service =
-        document.getElementById("service").value.trim();
-
-      const message =
-        document.getElementById("message").value.trim();
-
-            if (!name || !phone) {
+      if (!name || !phone) {
+        event.preventDefault();
         formStatus.innerHTML =
           "<strong>Please enter your name and phone number.</strong>";
         return;
       }
 
       if (!/^[0-9]{10,15}$/.test(phone)) {
+        event.preventDefault();
         formStatus.innerHTML =
           "<strong>Please enter a valid phone number (digits only).</strong>";
         return;
       }
 
-      /*
-       * Client-generated Lead ID.
-       * Example: SC-20260820-A7K2Q9
-       * It is sent to Apps Script and stored in the sheet.
-       */
-      const now = new Date();
-
-      const datePart =
-        now.toISOString()
-          .slice(0, 10)
-          .replace(/-/g, "");
-
-      const randomPart =
-        Math.random()
-          .toString(36)
-          .slice(2, 8)
-          .toUpperCase();
-
-      const leadId =
-        `SC-${datePart}-${randomPart}`;
-
-      const formData = new FormData();
-
-      formData.append("leadId", leadId);
-      formData.append("name", name);
-      formData.append("phone", phone);
-      formData.append("service", service);
-      formData.append("message", message);
-      formData.append("source", "smilecare-website");
-      formData.append("page", window.location.pathname);
-
+      /* Let the form submit natively into the hidden iframe. */
       submitButton.disabled = true;
       submitButton.textContent = "Sending…";
       formStatus.textContent = "Sending your enquiry…";
 
-      try {
-
-        /*
-         * no-cors is intentional. Apps Script is hosted on a
-         * different origin. fetch() sends the POST without ever
-         * navigating the patient away from the SmileCare page.
-         */
-        await fetch(
-          GAS_ENDPOINT,
-          {
-            method: "POST",
-            body: formData,
-            mode: "no-cors"
-          }
-        );
-
-        appointmentForm.reset();
-
-                formStatus.innerHTML = `
-          <strong>✓ Thank you for your enquiry</strong>
-          <br>
-          We'll contact you shortly to confirm a suitable appointment time.
-        `; 
-
-      } catch (error) {
-
-        console.error(
-          "SmileCare appointment enquiry:",
-          error
-        );
-
-        formStatus.innerHTML = `
-          <strong>We couldn't send your enquiry.</strong>
-          <br>
-          Please call or WhatsApp the clinic directly.
-        `;
-
-      } finally {
+      submissionTimeout = setTimeout(function() {
 
         submitButton.disabled = false;
         submitButton.textContent = "Request Appointment";
 
-      }
+        formStatus.innerHTML = `
+          <strong>We couldn't confirm your enquiry.</strong>
+          <br>
+          Please call or WhatsApp the clinic directly.
+        `;
+
+      }, 15000);
 
     }
   );
