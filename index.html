@@ -2434,7 +2434,6 @@
       id="appointmentForm"
       action="https://script.google.com/macros/s/AKfycbyijN-_uCFEjul2OUgoeDSxQNiCwCeQf0PT0of8GU4lHvYnoPqBRTFZKQYRFN9nEweSfw/exec"
       method="POST"
-      target="hiddenLeadFrame"
       novalidate
     >
 
@@ -2567,7 +2566,7 @@
       </p>
 
 
-      <p
+            <p
         class="form-status"
         id="formStatus"
         role="status"
@@ -2575,14 +2574,6 @@
       ></p>
 
     </form>
-
-
-    <iframe
-      name="hiddenLeadFrame"
-      id="hiddenLeadFrame"
-      style="display:none"
-      title="Enquiry submission handler"
-    ></iframe>
   </div>
 
 </section>
@@ -3013,57 +3004,19 @@
   });
 
 
-    const submitButton =
+    const GAS_ENDPOINT =
+    "https://script.google.com/macros/s/AKfycbyijN-_uCFEjul2OUgoeDSxQNiCwCeQf0PT0of8GU4lHvYnoPqBRTFZKQYRFN9nEweSfw/exec";
+
+  const submitButton =
     appointmentForm.querySelector(
       'button[type="submit"]'
     );
 
-  let submissionTimeout = null;
-
-  window.addEventListener("message", function(event) {
-
-    if (
-      !event.data ||
-      event.data.type !== "smilecare-lead-response"
-    ) {
-      return;
-    }
-
-    clearTimeout(submissionTimeout);
-
-    submitButton.disabled = false;
-    submitButton.textContent = "Request Appointment";
-
-    if (event.data.success) {
-
-      appointmentForm.reset();
-
-      formStatus.innerHTML = `
-        <strong>✓ Thank you for your enquiry</strong>
-        <br>
-        We'll contact you shortly to confirm a suitable appointment time.
-      `;
-
-    } else {
-
-      formStatus.innerHTML = `
-        <strong>We couldn't send your enquiry.</strong>
-        <br>
-        Please call or WhatsApp the clinic directly.
-      `;
-
-      console.error(
-        "SmileCare appointment enquiry:",
-        event.data.message
-      );
-
-    }
-
-  });
-
   appointmentForm.addEventListener(
     "submit",
-    function(event) {
+    async function(event) {
+
+      event.preventDefault();
 
       const name =
         document.getElementById("name").value.trim();
@@ -3071,29 +3024,84 @@
       const phone =
         document.getElementById("phone").value.trim();
 
+      const service =
+        document.getElementById("service").value.trim();
+
+      const message =
+        document.getElementById("message").value.trim();
+
       if (!name || !phone) {
-        event.preventDefault();
         formStatus.innerHTML =
           "<strong>Please enter your name and phone number.</strong>";
         return;
       }
 
       if (!/^[0-9]{10,15}$/.test(phone)) {
-        event.preventDefault();
         formStatus.innerHTML =
           "<strong>Please enter a valid phone number (digits only).</strong>";
         return;
       }
 
-      /* Let the form submit natively into the hidden iframe. */
+      const formData = new FormData();
+
+      formData.append("name", name);
+      formData.append("phone", phone);
+      formData.append("service", service);
+      formData.append("message", message);
+      formData.append("source", "smilecare-website");
+      formData.append("page", window.location.pathname);
+
       submitButton.disabled = true;
       submitButton.textContent = "Sending…";
       formStatus.textContent = "Sending your enquiry…";
 
-      submissionTimeout = setTimeout(function() {
+      try {
 
-        submitButton.disabled = false;
-        submitButton.textContent = "Request Appointment";
+        const response =
+          await fetch(
+            GAS_ENDPOINT,
+            {
+              method: "POST",
+              body: formData
+            }
+          );
+
+        const text =
+          await response.text();
+
+        let result = null;
+
+        try {
+          result = JSON.parse(text);
+        } catch (parseError) {
+          result = null;
+        }
+
+        if (response.ok) {
+
+          appointmentForm.reset();
+
+          formStatus.innerHTML = `
+            <strong>✓ Thank you for your enquiry</strong>
+            <br>
+            We'll contact you shortly to confirm a suitable appointment time.
+          `;
+
+        } else {
+
+          throw new Error(
+            (result && result.message) ||
+            "Server returned an error."
+          );
+
+        }
+
+      } catch (error) {
+
+        console.error(
+          "SmileCare appointment enquiry:",
+          error
+        );
 
         formStatus.innerHTML = `
           <strong>We couldn't confirm your enquiry.</strong>
@@ -3101,7 +3109,12 @@
           Please call or WhatsApp the clinic directly.
         `;
 
-      }, 15000);
+      } finally {
+
+        submitButton.disabled = false;
+        submitButton.textContent = "Request Appointment";
+
+      }
 
     }
   );
