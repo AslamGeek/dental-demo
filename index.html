@@ -2432,8 +2432,9 @@
 <form
       class="appointment-form"
       id="appointmentForm"
-      action="#"
+      action="https://script.google.com/macros/s/AKfycbyijN-_uCFEjul2OUgoeDSxQNiCwCeQf0PT0of8GU4lHvYnoPqBRTFZKQYRFN9nEweSfw/exec"
       method="POST"
+      target="hiddenLeadFrame"
       novalidate
     >
 
@@ -2474,7 +2475,8 @@
           Phone
           <span class="required">*</span>
         </label>
-                <input
+
+        <input
           id="phone"
           name="phone"
           type="tel"
@@ -2565,13 +2567,14 @@
       </p>
 
 
-      <form
-      class="appointment-form"
-      id="appointmentForm"
-      action="#"
-      method="POST"
-      novalidate
-    >
+      <p
+        class="form-status"
+        id="formStatus"
+        role="status"
+        aria-live="polite"
+      ></p>
+
+    </form>
 
 
     <iframe
@@ -2580,7 +2583,6 @@
       style="display:none"
       title="Enquiry submission handler"
     ></iframe>
-
   </div>
 
 </section>
