@@ -3047,8 +3047,15 @@ appointmentForm.addEventListener(
       appointmentForm.reset();
 
 
-      formStatus.textContent =
-        "Thank you. Your enquiry has been received. The clinic will contact you to confirm your appointment.";
+      const submittedName =
+  document.getElementById("name").value.trim();
+
+
+formStatus.innerHTML = `
+  <strong>✓ Enquiry received</strong><br>
+  Thank you${submittedName ? ", " + submittedName : ""}.
+  We'll contact you shortly to confirm a suitable appointment time.
+`;
 
     }
 
