@@ -445,25 +445,29 @@
 
 
     .hero-image {
-      min-height: 320px;
+  min-height: 320px;
 
-      display: grid;
-      place-items: center;
+  overflow: hidden;
 
-      overflow: hidden;
+  border-radius: 30px;
 
-      border-radius: 30px;
+  background: #e8f5f3;
 
-      background:
-        linear-gradient(
-          145deg,
-          #cfeae6,
-          #f7fcfb
-        );
+  box-shadow:
+    0 20px 50px rgba(23,73,75,.10);
+}
 
-      box-shadow:
-        0 20px 50px rgba(23,73,75,.10);
-    }
+
+.hero-image img {
+  width: 100%;
+  height: 100%;
+
+  min-height: 320px;
+
+  display: block;
+
+  object-fit: cover;
+}
 
 
     .hero-image svg {
@@ -1499,8 +1503,12 @@
 
 
       .hero-image {
-        min-height: 450px;
-      }
+  min-height: 450px;
+}
+
+.hero-image img {
+  min-height: 450px;
+}
 
     }
 
@@ -1707,275 +1715,13 @@
 
       <div class="hero-image">
 
-        <svg
-          viewBox="0 0 720 560"
-          role="img"
-          aria-label="Dentist consulting with a patient"
-        >
-
-          <defs>
-
-            <linearGradient
-              id="heroBg"
-              x1="0"
-              x2="1"
-            >
-
-              <stop
-                offset="0%"
-                stop-color="#d3ece8"
-              />
-
-              <stop
-                offset="100%"
-                stop-color="#f7fcfb"
-              />
-
-            </linearGradient>
-
-          </defs>
-
-
-          <rect
-            width="720"
-            height="560"
-            fill="url(#heroBg)"
-          />
-
-
-          <circle
-            cx="590"
-            cy="100"
-            r="80"
-            fill="#ffffff"
-            opacity=".6"
-          />
-
-
-          <circle
-            cx="110"
-            cy="455"
-            r="105"
-            fill="#b9dfda"
-            opacity=".45"
-          />
-
-
-          <!-- clinic window -->
-
-          <rect
-            x="70"
-            y="80"
-            width="350"
-            height="235"
-            rx="22"
-            fill="#ffffff"
-            opacity=".9"
-          />
-
-
-          <rect
-            x="105"
-            y="115"
-            width="125"
-            height="95"
-            rx="12"
-            fill="#c4e5e1"
-          />
-
-
-          <rect
-            x="250"
-            y="118"
-            width="130"
-            height="13"
-            rx="6"
-            fill="#c3d8d6"
-          />
-
-
-          <rect
-            x="250"
-            y="147"
-            width="100"
-            height="11"
-            rx="5"
-            fill="#d8e6e4"
-          />
-
-
-          <rect
-            x="250"
-            y="173"
-            width="118"
-            height="11"
-            rx="5"
-            fill="#d8e6e4"
-          />
-
-
-          <!-- dentist body -->
-
-          <path
-            d="
-              M190 430
-              C185 340 225 275 292 275
-              C358 275 400 335 397 430
-              Z
-            "
-            fill="#0b7773"
-          />
-
-
-          <!-- neck -->
-
-          <rect
-            x="272"
-            y="270"
-            width="45"
-            height="45"
-            rx="15"
-            fill="#d7a47e"
-          />
-
-
-          <!-- face -->
-
-          <circle
-            cx="294"
-            cy="245"
-            r="48"
-            fill="#d9a781"
-          />
-
-
-          <!-- hair -->
-
-          <path
-            d="
-              M247 244
-              C248 181 337 176 346 245
-              C320 226 277 225 247 244
-              Z
-            "
-            fill="#3d3030"
-          />
-
-
-          <!-- eyes -->
-
-          <circle
-            cx="276"
-            cy="249"
-            r="4"
-            fill="#333333"
-          />
-
-
-          <circle
-            cx="313"
-            cy="249"
-            r="4"
-            fill="#333333"
-          />
-
-
-          <!-- coat -->
-
-          <path
-            d="
-              M257 325
-              L294 370
-              L331 325
-              L360 430
-              L225 430
-              Z
-            "
-            fill="#ffffff"
-          />
-
-
-          <!-- patient -->
-
-          <circle
-            cx="505"
-            cy="290"
-            r="43"
-            fill="#d5a27d"
-          />
-
-
-          <path
-            d="
-              M465 288
-              C468 235 540 232 550 290
-              C525 275 490 274 465 288
-              Z
-            "
-            fill="#503d39"
-          />
-
-
-          <path
-            d="
-              M445 430
-              C445 350 472 326 507 326
-              C542 326 570 352 573 430
-              Z
-            "
-            fill="#b7d9d6"
-          />
-
-
-          <!-- dental monitor -->
-
-          <rect
-            x="485"
-            y="110"
-            width="155"
-            height="100"
-            rx="17"
-            fill="#ffffff"
-          />
-
-
-          <rect
-            x="505"
-            y="130"
-            width="115"
-            height="10"
-            rx="5"
-            fill="#cce3e0"
-          />
-
-
-          <rect
-            x="505"
-            y="155"
-            width="85"
-            height="10"
-            rx="5"
-            fill="#dce9e7"
-          />
-
-
-          <circle
-            cx="598"
-            cy="184"
-            r="13"
-            fill="#d9f2ee"
-          />
-
-
-          <path
-            d="M592 184 L597 189 L606 177"
-            fill="none"
-            stroke="#087f7b"
-            stroke-width="4"
-            stroke-linecap="round"
-          />
-
-        </svg>
+      <img
+        src="assets/dental-img-hero.png"
+        alt="Dentist consulting with a patient at SmileCare Dental Clinic"
+        width="1536"
+        height="1024"
+        fetchpriority="high"
+      >
 
       </div>
 
