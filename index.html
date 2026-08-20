@@ -1,2817 +1,3330 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+  <meta charset="UTF-8">
 
-<meta
+  <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0"
->
+  >
 
-<title>SmileCare | Dentist in Proddatur</title>
-
-<meta
+  <meta
     name="description"
-    content="SmileCare provides personalised dental care in Proddatur, Andhra Pradesh. Explore dental treatments and request an appointment."
->
+    content="SmileCare Dental Clinic in Proddatur, Andhra Pradesh. Personalised dental care from a trusted dentist."
+  >
 
-<style>
+  <meta
+    name="theme-color"
+    content="#087f7b"
+  >
 
-/* =========================================================
-   RESET
-========================================================= */
+  <title>
+    SmileCare Dental Clinic | Dentist in Proddatur
+  </title>
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
-html {
-    scroll-behavior: smooth;
-}
+  <style>
 
-body {
-    font-family:
+    /* =========================================================
+       RESET
+    ========================================================= */
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+
+    body {
+      margin: 0;
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
         -apple-system,
         BlinkMacSystemFont,
         "Segoe UI",
-        Roboto,
-        Arial,
         sans-serif;
 
-    color: #17324d;
-    background: #ffffff;
-    line-height: 1.6;
-}
+      color: #17383d;
+      background: #ffffff;
 
-img {
-    max-width: 100%;
-    display: block;
-}
+      line-height: 1.6;
 
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
-button,
-input,
-textarea,
-select {
-    font: inherit;
-}
-
-.container {
-    width: min(1120px, 92%);
-    margin: auto;
-}
-
-
-/* =========================================================
-   VARIABLES
-========================================================= */
-
-:root {
-    --primary: #159a9c;
-    --primary-dark: #10787a;
-
-    --dark: #17324d;
-    --text: #34495e;
-    --muted: #6d7e8d;
-
-    --light: #f2f9f9;
-    --lighter: #f8fcfc;
-
-    --border: #dce8eb;
-
-    --white: #ffffff;
-}
-
-
-/* =========================================================
-   TOP BAR
-========================================================= */
-
-.topbar {
-    background: var(--dark);
-    color: white;
-    font-size: 13px;
-}
-
-.topbar-inner {
-    min-height: 38px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    gap: 15px;
-}
-
-.topbar a {
-    color: white;
-}
-
-
-/* =========================================================
-   HEADER
-========================================================= */
-
-header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-
-    background: rgba(255,255,255,.96);
-
-    backdrop-filter: blur(8px);
-
-    border-bottom: 1px solid var(--border);
-}
-
-.navbar {
-    min-height: 72px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    gap: 25px;
-}
-
-.logo {
-    font-size: 24px;
-    font-weight: 800;
-    color: var(--primary);
-}
-
-.logo span {
-    color: var(--dark);
-}
-
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 25px;
-
-    font-size: 14px;
-    font-weight: 600;
-}
-
-.nav-links a:hover {
-    color: var(--primary);
-}
-
-.nav-cta {
-    padding: 10px 17px;
-
-    background: var(--primary);
-    color: white !important;
-
-    border-radius: 8px;
-}
-
-.nav-cta:hover {
-    background: var(--primary-dark);
-}
-
-
-/* =========================================================
-   HERO
-========================================================= */
-
-.hero {
-    background:
-        linear-gradient(
-            135deg,
-            #edfafa 0%,
-            #ffffff 65%
-        );
-
-    padding: 80px 0 70px;
-}
-
-.hero-grid {
-    display: grid;
-
-    grid-template-columns:
-        1.05fr
-        .95fr;
-
-    align-items: center;
-
-    gap: 60px;
-}
-
-.eyebrow {
-    color: var(--primary-dark);
-
-    font-size: 13px;
-    font-weight: 800;
-
-    letter-spacing: 1.4px;
-    text-transform: uppercase;
-
-    margin-bottom: 12px;
-}
-
-.hero h1 {
-    font-size: clamp(38px, 6vw, 64px);
-
-    line-height: 1.05;
-
-    margin-bottom: 20px;
-}
-
-.hero h1 span {
-    color: var(--primary);
-}
-
-.hero-text {
-    max-width: 620px;
-
-    color: var(--text);
-
-    font-size: 18px;
-
-    margin-bottom: 28px;
-}
-
-.hero-buttons {
-    display: flex;
-
-    flex-wrap: wrap;
-
-    gap: 12px;
-}
-
-.btn {
-    display: inline-flex;
-
-    align-items: center;
-    justify-content: center;
-
-    min-height: 48px;
-
-    padding: 0 20px;
-
-    border-radius: 8px;
-
-    border: 1px solid transparent;
-
-    font-weight: 700;
-
-    cursor: pointer;
-
-    transition: .2s;
-}
-
-.btn-primary {
-    background: var(--primary);
-    color: white;
-}
-
-.btn-primary:hover {
-    background: var(--primary-dark);
-}
-
-.btn-secondary {
-    background: white;
-
-    border-color: var(--border);
-
-    color: var(--dark);
-}
-
-.btn-secondary:hover {
-    border-color: var(--primary);
-}
-
-.hero-card {
-    min-height: 420px;
-
-    border-radius: 22px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #dff5f4,
-            #f9ffff
-        );
-
-    border: 1px solid var(--border);
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    padding: 30px;
-
-    text-align: center;
-}
-
-.hero-placeholder {
-    width: 100%;
-    max-width: 390px;
-
-    aspect-ratio: 4 / 5;
-
-    border-radius: 18px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #ffffff,
-            #dff3f2
-        );
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-    justify-content: center;
-
-    border: 1px solid var(--border);
-
-    color: var(--muted);
-}
-
-.hero-placeholder .icon {
-    font-size: 70px;
-    margin-bottom: 12px;
-}
-
-.hero-placeholder strong {
-    color: var(--dark);
-    font-size: 18px;
-}
-
-
-/* =========================================================
-   TRUST STRIP
-========================================================= */
-
-.trust-strip {
-    border-bottom: 1px solid var(--border);
-
-    background: white;
-}
-
-.trust-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(4, 1fr);
-}
-
-.trust-item {
-    padding: 20px;
-
-    text-align: center;
-
-    border-right: 1px solid var(--border);
-}
-
-.trust-item:last-child {
-    border-right: none;
-}
-
-.trust-item strong {
-    display: block;
-
-    font-size: 14px;
-
-    margin-bottom: 3px;
-}
-
-.trust-item span {
-    color: var(--muted);
-
-    font-size: 12px;
-}
-
-
-/* =========================================================
-   GENERAL SECTION
-========================================================= */
-
-section {
-    padding: 85px 0;
-
-    scroll-margin-top: 70px;
-}
-
-.section-heading {
-    max-width: 700px;
-
-    margin-bottom: 40px;
-}
-
-.section-heading.center {
-    margin-left: auto;
-    margin-right: auto;
-
-    text-align: center;
-}
-
-.section-label {
-    color: var(--primary-dark);
-
-    font-size: 12px;
-
-    font-weight: 800;
-
-    letter-spacing: 1.5px;
-
-    text-transform: uppercase;
-
-    margin-bottom: 8px;
-}
-
-.section-heading h2 {
-    font-size: clamp(30px, 5vw, 44px);
-
-    line-height: 1.1;
-
-    margin-bottom: 12px;
-}
-
-.section-heading p {
-    color: var(--muted);
-
-    font-size: 16px;
-}
-
-
-/* =========================================================
-   SERVICES
-========================================================= */
-
-.services {
-    background: var(--lighter);
-}
-
-.service-nav {
-    display: flex;
-
-    gap: 10px;
-
-    overflow-x: auto;
-
-    padding-bottom: 12px;
-
-    scrollbar-width: thin;
-}
-
-.service-nav button {
-    flex-shrink: 0;
-
-    border: 1px solid var(--border);
-
-    background: white;
-
-    color: var(--dark);
-
-    padding: 10px 15px;
-
-    border-radius: 30px;
-
-    cursor: pointer;
-
-    font-size: 13px;
-
-    font-weight: 600;
-}
-
-.service-nav button.active {
-    background: var(--primary);
-
-    color: white;
-
-    border-color: var(--primary);
-}
-
-
-/* CAROUSEL */
-
-.carousel-wrapper {
-    position: relative;
-
-    margin-top: 22px;
-}
-
-.service-carousel {
-    display: flex;
-
-    gap: 20px;
-
-    overflow-x: auto;
-
-    scroll-behavior: smooth;
-
-    scroll-snap-type: x mandatory;
-
-    scrollbar-width: none;
-
-    padding: 5px 2px 20px;
-}
-
-.service-carousel::-webkit-scrollbar {
-    display: none;
-}
-
-
-/* SERVICE CARD */
-
-.service-card {
-    flex:
-        0 0
-        calc(
-            33.333% - 14px
-        );
-
-    scroll-snap-align: center;
-
-    background: white;
-
-    border: 1px solid var(--border);
-
-    border-radius: 16px;
-
-    overflow: hidden;
-
-    transition:
-        transform .25s,
-        border-color .25s,
-        box-shadow .25s;
-}
-
-.service-card:hover {
-    transform: translateY(-3px);
-}
-
-.service-card.focused {
-    border-color: var(--primary);
-
-    box-shadow:
-        0 12px 35px
-        rgba(21,154,156,.14);
-}
-
-.service-image {
-    height: 180px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #e0f4f3,
-            #f8ffff
-        );
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    font-size: 48px;
-
-    color: var(--primary);
-}
-
-.service-content {
-    padding: 22px;
-}
-
-.service-content h3 {
-    font-size: 21px;
-
-    margin-bottom: 8px;
-}
-
-.service-content > p {
-    color: var(--muted);
-
-    font-size: 14px;
-
-    margin-bottom: 18px;
-}
-
-.faq-mini {
-    border-top: 1px solid var(--border);
-
-    padding-top: 14px;
-
-    margin-top: 14px;
-}
-
-.faq-mini strong {
-    display: block;
-
-    font-size: 13px;
-
-    margin-bottom: 3px;
-}
-
-.faq-mini p {
-    color: var(--muted);
-
-    font-size: 12px;
-}
-
-.service-buttons {
-    display: flex;
-
-    gap: 8px;
-
-    margin-top: 18px;
-}
-
-.service-buttons .btn {
-    min-height: 42px;
-
-    padding: 0 13px;
-
-    font-size: 13px;
-}
-
-
-/* CAROUSEL CONTROLS */
-
-.carousel-controls {
-    display: flex;
-
-    justify-content: center;
-
-    gap: 10px;
-
-    margin-top: 5px;
-}
-
-.carousel-btn {
-    width: 46px;
-    height: 46px;
-
-    border-radius: 50%;
-
-    border: 1px solid var(--border);
-
-    background: white;
-
-    cursor: pointer;
-
-    font-size: 20px;
-
-    color: var(--dark);
-}
-
-.carousel-btn:hover {
-    background: var(--primary);
-
-    color: white;
-
-    border-color: var(--primary);
-}
-
-
-/* =========================================================
-   ABOUT DOCTOR
-========================================================= */
-
-.about-grid {
-    display: grid;
-
-    grid-template-columns:
-        .8fr
-        1.2fr;
-
-    gap: 60px;
-
-    align-items: center;
-}
-
-.doctor-placeholder {
-    min-height: 430px;
-
-    border-radius: 20px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #e4f6f5,
-            #f9ffff
-        );
-
-    border: 1px solid var(--border);
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    color: var(--muted);
-
-    text-align: center;
-
-    padding: 30px;
-}
-
-.about-content h2 {
-    font-size: 40px;
-
-    line-height: 1.1;
-
-    margin-bottom: 18px;
-}
-
-.about-content p {
-    color: var(--muted);
-
-    margin-bottom: 18px;
-}
-
-.check-list {
-    list-style: none;
-
-    margin: 25px 0;
-}
-
-.check-list li {
-    position: relative;
-
-    padding-left: 28px;
-
-    margin-bottom: 10px;
-
-    font-size: 14px;
-}
-
-.check-list li::before {
-    content: "✓";
-
-    position: absolute;
-
-    left: 0;
-
-    color: var(--primary);
-
-    font-weight: 800;
-}
-
-
-/* =========================================================
-   WHY SMILECARE
-========================================================= */
-
-.why {
-    background: var(--light);
-}
-
-.feature-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 18px;
-}
-
-.feature-card {
-    background: white;
-
-    border: 1px solid var(--border);
-
-    border-radius: 14px;
-
-    padding: 25px;
-}
-
-.feature-icon {
-    font-size: 30px;
-
-    margin-bottom: 12px;
-}
-
-.feature-card h3 {
-    font-size: 18px;
-
-    margin-bottom: 7px;
-}
-
-.feature-card p {
-    color: var(--muted);
-
-    font-size: 14px;
-}
-
-
-/* =========================================================
-   APPOINTMENT
-========================================================= */
-
-.appointment {
-    background: var(--dark);
-
-    color: white;
-}
-
-.appointment-grid {
-    display: grid;
-
-    grid-template-columns:
-        .8fr
-        1.2fr;
-
-    gap: 60px;
-
-    align-items: start;
-}
-
-.appointment h2 {
-    font-size: 42px;
-
-    line-height: 1.1;
-
-    margin-bottom: 15px;
-}
-
-.appointment-intro {
-    color: #c5d2da;
-
-    margin-bottom: 25px;
-}
-
-.contact-links {
-    display: grid;
-
-    gap: 10px;
-}
-
-.contact-links a {
-    color: white;
-
-    padding: 12px 14px;
-
-    border: 1px solid
-        rgba(255,255,255,.18);
-
-    border-radius: 8px;
-}
-
-.form {
-    background: white;
-
-    color: var(--dark);
-
-    padding: 28px;
-
-    border-radius: 16px;
-}
-
-.form-group {
-    margin-bottom: 15px;
-}
-
-.form label {
-    display: block;
-
-    font-size: 13px;
-
-    font-weight: 700;
-
-    margin-bottom: 5px;
-}
-
-.form input,
-.form textarea,
-.form select {
-    width: 100%;
-
-    padding: 12px 13px;
-
-    border: 1px solid var(--border);
-
-    border-radius: 7px;
-
-    outline: none;
-}
-
-.form input:focus,
-.form textarea:focus,
-.form select:focus {
-    border-color: var(--primary);
-}
-
-.form textarea {
-    min-height: 100px;
-
-    resize: vertical;
-}
-
-.form button {
-    width: 100%;
-}
-
-
-/* =========================================================
-   LOCATION
-========================================================= */
-
-.location-grid {
-    display: grid;
-
-    grid-template-columns:
-        1fr
-        1fr;
-
-    gap: 25px;
-}
-
-.location-card {
-    border: 1px solid var(--border);
-
-    border-radius: 15px;
-
-    padding: 25px;
-}
-
-.location-card h3 {
-    margin-bottom: 10px;
-}
-
-.location-card p {
-    color: var(--muted);
-
-    font-size: 14px;
-}
-
-.map-placeholder {
-    min-height: 300px;
-
-    background: var(--light);
-
-    border-radius: 15px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    color: var(--muted);
-
-    border: 1px solid var(--border);
-
-    text-align: center;
-
-    padding: 20px;
-}
-
-
-/* =========================================================
-   FOOTER
-========================================================= */
-
-footer {
-    background: #10263a;
-
-    color: white;
-
-    padding: 35px 0;
-}
-
-.footer-grid {
-    display: grid;
-
-    grid-template-columns:
-        1fr
-        1fr;
-
-    gap: 30px;
-}
-
-footer p {
-    color: #b8c7d0;
-
-    font-size: 13px;
-}
-
-.footer-links {
-    display: flex;
-
-    gap: 18px;
-
-    justify-content: flex-end;
-
-    flex-wrap: wrap;
-
-    font-size: 13px;
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media(max-width: 850px) {
-
-    .nav-links {
-        display: none;
+      -webkit-font-smoothing: antialiased;
     }
 
-    .hero-grid,
-    .about-grid,
-    .appointment-grid {
-        grid-template-columns: 1fr;
 
-        gap: 35px;
+    img {
+      max-width: 100%;
+      display: block;
     }
+
+
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit;
+    }
+
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.12;
+      letter-spacing: -0.035em;
+    }
+
+
+    .container {
+      width: min(
+        1120px,
+        calc(100% - 32px)
+      );
+
+      margin-inline: auto;
+    }
+
+
+    .skip-link {
+      position: fixed;
+      top: -100px;
+      left: 16px;
+
+      background: #ffffff;
+      color: #075d5a;
+
+      padding: 10px 14px;
+
+      border-radius: 8px;
+
+      z-index: 999;
+    }
+
+
+    .skip-link:focus {
+      top: 12px;
+    }
+
+
+    /* =========================================================
+       ACCESSIBILITY
+    ========================================================= */
+
+    :focus-visible {
+      outline: 3px solid #f2c94c;
+      outline-offset: 3px;
+    }
+
+
+    /* =========================================================
+       HEADER
+    ========================================================= */
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+
+      background: rgba(255,255,255,.96);
+
+      border-bottom: 1px solid #e4eeee;
+
+      backdrop-filter: blur(10px);
+    }
+
+
+    .header-inner {
+      min-height: 68px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 20px;
+    }
+
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+
+      font-size: 20px;
+      font-weight: 850;
+
+      letter-spacing: -.04em;
+    }
+
+
+    .logo-mark {
+      width: 34px;
+      height: 34px;
+
+      display: grid;
+      place-items: center;
+
+      border-radius: 11px;
+
+      background: #dff4f1;
+      color: #087f7b;
+
+      font-size: 17px;
+    }
+
+
+    .logo-text span {
+      color: #087f7b;
+    }
+
+
+    .desktop-nav {
+      display: none;
+
+      align-items: center;
+      gap: 25px;
+
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+
+    .desktop-nav a {
+      transition: color .2s ease;
+    }
+
+
+    .desktop-nav a:hover {
+      color: #087f7b;
+    }
+
+
+    /* =========================================================
+       BUTTONS
+    ========================================================= */
+
+    .btn {
+      min-height: 47px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 0 19px;
+
+      border-radius: 12px;
+
+      border: 1px solid transparent;
+
+      font-weight: 800;
+      font-size: 14px;
+
+      cursor: pointer;
+
+      transition:
+        transform .2s ease,
+        background .2s ease,
+        box-shadow .2s ease;
+    }
+
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+
+    .btn-primary {
+      background: #087f7b;
+      color: #ffffff;
+
+      box-shadow:
+        0 8px 22px rgba(8,127,123,.20);
+    }
+
+
+    .btn-primary:hover {
+      background: #066c69;
+    }
+
+
+    .btn-secondary {
+      background: #ffffff;
+      color: #08706c;
+
+      border-color: #afd2cf;
+    }
+
+
+    .btn-secondary:hover {
+      background: #f3fbfa;
+    }
+
+
+    .btn-outline {
+      background: #ffffff;
+      color: #08706c;
+
+      border-color: #9bc7c3;
+    }
+
+
+    .btn-full {
+      width: 100%;
+    }
+
+
+    .header-cta {
+      display: none;
+    }
+
+
+    /* =========================================================
+       HERO
+    ========================================================= */
 
     .hero {
-        padding: 55px 0;
+      position: relative;
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          135deg,
+          #eefaf8 0%,
+          #ffffff 58%,
+          #f5fbfb 100%
+        );
+
+      padding: 52px 0 42px;
     }
 
-    .service-card {
-        flex:
-            0 0
-            78%;
+
+    .hero::before {
+      content: "";
+
+      position: absolute;
+
+      width: 300px;
+      height: 300px;
+
+      border-radius: 50%;
+
+      background: #dff3ef;
+
+      opacity: .5;
+
+      right: -150px;
+      top: -130px;
     }
 
-    .feature-grid {
-        grid-template-columns: 1fr;
+
+    .hero-grid {
+      position: relative;
+
+      display: grid;
+
+      gap: 36px;
+
+      align-items: center;
     }
 
-    .location-grid {
-        grid-template-columns: 1fr;
+
+    .eyebrow {
+      margin-bottom: 9px;
+
+      color: #087f7b;
+
+      font-size: 11px;
+      font-weight: 850;
+
+      text-transform: uppercase;
+
+      letter-spacing: .13em;
     }
 
-    .trust-grid {
-        grid-template-columns:
-            1fr 1fr;
-    }
-
-    .trust-item:nth-child(2) {
-        border-right: none;
-    }
-
-    .trust-item:nth-child(-n+2) {
-        border-bottom: 1px solid var(--border);
-    }
-
-    .footer-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .footer-links {
-        justify-content: flex-start;
-    }
-}
-
-
-@media(max-width: 500px) {
-
-    .topbar-inner {
-        justify-content: center;
-    }
-
-    .topbar-location {
-        display: none;
-    }
-
-    section {
-        padding: 65px 0;
-    }
 
     .hero h1 {
-        font-size: 42px;
+      max-width: 720px;
+
+      margin-bottom: 20px;
+
+      font-size:
+        clamp(
+          38px,
+          9vw,
+          66px
+        );
     }
 
-    .hero-text {
-        font-size: 16px;
+
+    .hero h1 span {
+      color: #087f7b;
     }
 
-    .hero-buttons {
-        flex-direction: column;
+
+    .hero-description {
+      max-width: 600px;
+
+      margin-bottom: 23px;
+
+      color: #5d7074;
+
+      font-size: 17px;
     }
 
-    .hero-buttons .btn {
-        width: 100%;
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+
+      gap: 10px;
     }
+
+
+    .trust-strip {
+      display: flex;
+      flex-wrap: wrap;
+
+      gap: 24px;
+
+      margin-top: 28px;
+    }
+
+
+    .trust-item {
+      display: grid;
+    }
+
+
+    .trust-item strong {
+      font-size: 19px;
+      line-height: 1.2;
+    }
+
+
+    .trust-item span {
+      color: #758589;
+
+      font-size: 11px;
+    }
+
+
+    /* =========================================================
+       HERO VISUAL
+    ========================================================= */
+
+    .hero-visual {
+      position: relative;
+    }
+
+
+    .hero-image {
+      min-height: 320px;
+
+      display: grid;
+      place-items: center;
+
+      overflow: hidden;
+
+      border-radius: 30px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #cfeae6,
+          #f7fcfb
+        );
+
+      box-shadow:
+        0 20px 50px rgba(23,73,75,.10);
+    }
+
+
+    .hero-image svg {
+      width: 100%;
+      height: auto;
+    }
+
+
+    .floating-card {
+      position: absolute;
+
+      left: 12px;
+      right: 30px;
+      bottom: 12px;
+
+      display: flex;
+      align-items: center;
+
+      gap: 11px;
+
+      padding: 13px;
+
+      border-radius: 15px;
+
+      background: rgba(255,255,255,.96);
+
+      border: 1px solid #e1eceb;
+
+      box-shadow:
+        0 15px 35px rgba(20,58,62,.13);
+    }
+
+
+    .floating-check {
+      flex: 0 0 auto;
+
+      width: 32px;
+      height: 32px;
+
+      display: grid;
+      place-items: center;
+
+      border-radius: 50%;
+
+      background: #dff5f0;
+      color: #087f7b;
+
+      font-weight: 900;
+    }
+
+
+    .floating-card strong {
+      display: block;
+
+      font-size: 13px;
+    }
+
+
+    .floating-card small {
+      display: block;
+
+      color: #718184;
+
+      font-size: 11px;
+    }
+
+
+    /* =========================================================
+       SECTIONS
+    ========================================================= */
+
+    .section {
+      padding: 76px 0;
+    }
+
+
+    .section-heading {
+      max-width: 720px;
+
+      margin-bottom: 30px;
+    }
+
+
+    .section-heading h2 {
+      margin-bottom: 13px;
+
+      font-size:
+        clamp(
+          31px,
+          6vw,
+          47px
+        );
+    }
+
+
+    .section-heading > p:last-child {
+      margin-bottom: 0;
+
+      color: #64777b;
+    }
+
+
+    .centered {
+      text-align: center;
+
+      margin-inline: auto;
+    }
+
+
+    /* =========================================================
+       SERVICES
+    ========================================================= */
+
+    .services {
+      background: #ffffff;
+    }
+
+
+    .service-carousel {
+      display: grid;
+
+      grid-template-columns: 38px minmax(0,1fr) 38px;
+
+      gap: 8px;
+
+      align-items: center;
+    }
+
+
+    .carousel-btn {
+      width: 38px;
+      height: 38px;
+
+      display: grid;
+      place-items: center;
+
+      border: 1px solid #c8dedb;
+
+      border-radius: 50%;
+
+      background: #ffffff;
+      color: #08706c;
+
+      cursor: pointer;
+
+      transition:
+        background .2s ease,
+        transform .2s ease;
+    }
+
+
+    .carousel-btn:hover {
+      background: #eef9f7;
+
+      transform: scale(1.05);
+    }
+
+
+    .service-track {
+      display: flex;
+
+      gap: 14px;
+
+      overflow-x: auto;
+
+      scroll-snap-type: x mandatory;
+
+      scrollbar-width: none;
+
+      padding: 4px;
+    }
+
+
+    .service-track::-webkit-scrollbar {
+      display: none;
+    }
+
 
     .service-card {
-        flex: 0 0 88%;
+      flex: 0 0 88%;
+
+      scroll-snap-align: start;
+
+      padding: 22px;
+
+      border-radius: 18px;
+
+      background: #ffffff;
+
+      border: 1px solid #dce9e7;
+
+      box-shadow:
+        0 7px 22px rgba(24,57,62,.05);
+
+      cursor: pointer;
+
+      transition:
+        border-color .2s ease,
+        box-shadow .2s ease,
+        transform .2s ease;
     }
 
-    .service-buttons {
-        flex-direction: column;
+
+    .service-card:hover {
+      transform: translateY(-2px);
     }
 
-    .service-buttons .btn {
-        width: 100%;
+
+    .service-card.active {
+      border-color: #70b5af;
+
+      box-shadow:
+        0 12px 30px rgba(8,127,123,.12);
     }
+
+
+    .service-icon {
+      width: 44px;
+      height: 44px;
+
+      display: grid;
+      place-items: center;
+
+      border-radius: 13px;
+
+      background: #e8f7f4;
+      color: #087f7b;
+
+      font-size: 21px;
+      font-weight: 900;
+    }
+
+
+    .service-card h3 {
+      margin:
+        18px
+        0
+        7px;
+
+      font-size: 20px;
+    }
+
+
+    .service-card p {
+      min-height: 68px;
+
+      margin-bottom: 15px;
+
+      color: #66787c;
+
+      font-size: 14px;
+    }
+
+
+    .service-link {
+      border: 0;
+
+      padding: 0;
+
+      background: transparent;
+
+      color: #08706c;
+
+      font-size: 13px;
+      font-weight: 850;
+
+      cursor: pointer;
+    }
+
+
+    .service-faq {
+      margin-top: 18px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 20px;
+
+      padding: 20px;
+
+      border-radius: 18px;
+
+      background: #f2faf8;
+
+      border: 1px solid #dbeae8;
+    }
+
+
+    .faq-label {
+      margin-bottom: 4px !important;
+
+      color: #087f7b !important;
+
+      font-size: 10px !important;
+      font-weight: 850 !important;
+
+      text-transform: uppercase;
+
+      letter-spacing: .12em;
+    }
+
+
+    .service-faq h3 {
+      margin-bottom: 5px;
+
+      font-size: 17px;
+    }
+
+
+    .service-faq p {
+      margin-bottom: 0;
+
+      color: #64777b;
+
+      font-size: 14px;
+    }
+
+
+    /* =========================================================
+       DENTIST
+    ========================================================= */
+
+    .dentist {
+      background: #f6faf9;
+    }
+
+
+    .dentist-grid {
+      display: grid;
+
+      gap: 35px;
+
+      align-items: center;
+    }
+
+
+    .dentist-photo {
+      max-width: 380px;
+
+      margin-inline: auto;
+
+      aspect-ratio: 1 / 1;
+
+      display: grid;
+      place-items: center;
+
+      overflow: hidden;
+
+      border-radius: 28px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #c7e5e0,
+          #73afa9
+        );
+
+      color: #ffffff;
+    }
+
+
+    .dentist-photo svg {
+      width: 100%;
+      height: 100%;
+    }
+
+
+    .dentist-content .lead {
+      margin-bottom: 12px;
+
+      color: #38565c;
+
+      font-size: 19px;
+    }
+
+
+    .check-list {
+      list-style: none;
+
+      margin: 23px 0;
+
+      padding: 0;
+    }
+
+
+    .check-list li {
+      margin: 10px 0;
+    }
+
+
+    .check-list li::before {
+      content: "✓";
+
+      margin-right: 9px;
+
+      color: #087f7b;
+
+      font-weight: 900;
+    }
+
+
+    /* =========================================================
+       WHY
+    ========================================================= */
+
+    .why-grid {
+      display: grid;
+
+      gap: 14px;
+    }
+
+
+    .why-card {
+      padding: 25px;
+
+      border-radius: 18px;
+
+      border: 1px solid #e0ecea;
+
+      background: #ffffff;
+    }
+
+
+    .why-number {
+      color: #087f7b;
+
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+
+    .why-card h3 {
+      margin:
+        18px
+        0
+        7px;
+
+      font-size: 19px;
+    }
+
+
+    .why-card p {
+      margin-bottom: 0;
+
+      color: #687a7d;
+
+      font-size: 14px;
+    }
+
+
+    /* =========================================================
+       REVIEWS
+    ========================================================= */
+
+    .reviews {
+      background: #ffffff;
+    }
+
+
+    .review-grid {
+      display: grid;
+
+      gap: 14px;
+    }
+
+
+    .review-card {
+      margin: 0;
+
+      padding: 24px;
+
+      border-radius: 18px;
+
+      background: #f7faf9;
+
+      border: 1px solid #e0ecea;
+    }
+
+
+    .stars {
+      color: #e1a83d;
+
+      letter-spacing: 3px;
+
+      font-size: 14px;
+    }
+
+
+    .review-card blockquote {
+      margin:
+        14px
+        0;
+
+      font-size: 15px;
+      font-weight: 650;
+    }
+
+
+    .review-card figcaption {
+      color: #718083;
+
+      font-size: 13px;
+    }
+
+
+    /* =========================================================
+       APPOINTMENT
+    ========================================================= */
+
+    .appointment {
+      background: #0c5051;
+
+      color: #ffffff;
+    }
+
+
+    .appointment-grid {
+      display: grid;
+
+      gap: 35px;
+    }
+
 
     .appointment h2 {
-        font-size: 34px;
+      margin-bottom: 15px;
+
+      font-size:
+        clamp(
+          32px,
+          6vw,
+          47px
+        );
     }
 
-}
 
-</style>
+    .appointment-intro {
+      max-width: 530px;
+
+      color: #cfe2e0;
+    }
+
+
+    .direct-actions {
+      display: grid;
+
+      gap: 10px;
+
+      margin-top: 26px;
+    }
+
+
+    .action-card {
+      display: flex;
+
+      align-items: center;
+
+      gap: 12px;
+
+      padding: 14px;
+
+      border: 1px solid rgba(255,255,255,.18);
+
+      border-radius: 14px;
+
+      background: rgba(255,255,255,.07);
+
+      transition:
+        background .2s ease,
+        transform .2s ease;
+    }
+
+
+    .action-card:hover {
+      background: rgba(255,255,255,.12);
+
+      transform: translateY(-1px);
+    }
+
+
+    .action-icon {
+      width: 38px;
+      height: 38px;
+
+      flex: 0 0 auto;
+
+      display: grid;
+      place-items: center;
+
+      border-radius: 50%;
+
+      background: rgba(255,255,255,.12);
+
+      font-size: 18px;
+    }
+
+
+    .action-card strong {
+      display: block;
+
+      font-size: 14px;
+    }
+
+
+    .action-card small {
+      color: #bcd3d0;
+
+      font-size: 12px;
+    }
+
+
+    .appointment-form {
+      padding: 23px;
+
+      border-radius: 20px;
+
+      background: #ffffff;
+      color: #17383d;
+
+      box-shadow:
+        0 20px 50px rgba(0,0,0,.16);
+    }
+
+
+    .form-group {
+      margin-bottom: 14px;
+    }
+
+
+    .form-group label {
+      display: block;
+
+      margin-bottom: 6px;
+
+      font-size: 13px;
+      font-weight: 750;
+    }
+
+
+    .required {
+      color: #d04e4e;
+    }
+
+
+    .optional {
+      color: #8a999c;
+
+      font-weight: 500;
+    }
+
+
+    .appointment-form input,
+    .appointment-form select,
+    .appointment-form textarea {
+      width: 100%;
+
+      padding: 12px;
+
+      border: 1px solid #ccdcd9;
+
+      border-radius: 10px;
+
+      background: #ffffff;
+
+      color: #17383d;
+
+      outline: none;
+
+      resize: vertical;
+    }
+
+
+    .appointment-form input:focus,
+    .appointment-form select:focus,
+    .appointment-form textarea:focus {
+      border-color: #087f7b;
+
+      box-shadow:
+        0 0 0 3px #d9f2ee;
+    }
+
+
+    .form-note {
+      margin: 10px 0 0;
+
+      color: #7b8a8d;
+
+      font-size: 11px;
+    }
+
+
+    .form-status {
+      min-height: 20px;
+
+      margin: 8px 0 0;
+
+      color: #08706c;
+
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+
+    /* =========================================================
+       LOCATION
+    ========================================================= */
+
+    .visit-grid {
+      display: grid;
+
+      gap: 32px;
+    }
+
+
+    .contact-details {
+      margin: 23px 0;
+    }
+
+
+    .contact-item {
+      margin-bottom: 20px;
+    }
+
+
+    .contact-item strong {
+      display: block;
+
+      margin-bottom: 3px;
+
+      font-size: 13px;
+    }
+
+
+    .contact-item span,
+    .contact-item a {
+      color: #65777b;
+
+      font-size: 14px;
+    }
+
+
+    .contact-item a {
+      color: #08706c;
+
+      font-weight: 750;
+    }
+
+
+    .map-wrapper {
+      min-height: 340px;
+
+      overflow: hidden;
+
+      border-radius: 22px;
+
+      border: 1px solid #dce8e6;
+    }
+
+
+    .map-wrapper iframe {
+      width: 100%;
+      height: 100%;
+
+      min-height: 340px;
+
+      display: block;
+
+      border: 0;
+    }
+
+
+    /* =========================================================
+       FOOTER
+    ========================================================= */
+
+    .site-footer {
+      padding: 50px 0 90px;
+
+      background: #082f31;
+
+      color: #d7e5e3;
+    }
+
+
+    .footer-grid {
+      display: grid;
+
+      grid-template-columns: 1fr 1fr;
+
+      gap: 30px;
+    }
+
+
+    .footer-brand p {
+      max-width: 300px;
+
+      color: #9db6b3;
+
+      font-size: 13px;
+    }
+
+
+    .footer-title {
+      margin-bottom: 12px;
+
+      color: #ffffff;
+
+      font-size: 13px;
+    }
+
+
+    .footer-links a {
+      display: block;
+
+      margin: 8px 0;
+
+      color: #b9cecb;
+
+      font-size: 13px;
+    }
+
+
+    .footer-links a:hover {
+      color: #ffffff;
+    }
+
+
+    .social-links {
+      display: flex;
+
+      gap: 8px;
+    }
+
+
+    .social-links a {
+      width: 35px;
+      height: 35px;
+
+      display: grid;
+      place-items: center;
+
+      border: 1px solid #3e6261;
+
+      border-radius: 50%;
+
+      color: #ffffff;
+
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+
+    .footer-bottom {
+      margin-top: 30px;
+
+      padding-top: 18px;
+
+      border-top: 1px solid #254d4e;
+
+      display: flex;
+
+      justify-content: space-between;
+
+      gap: 15px;
+
+      color: #89a6a3;
+
+      font-size: 11px;
+    }
+
+
+    /* =========================================================
+       MOBILE CTA BAR
+    ========================================================= */
+
+    .mobile-cta {
+      position: fixed;
+
+      left: 0;
+      right: 0;
+      bottom: 0;
+
+      z-index: 90;
+
+      display: grid;
+
+      grid-template-columns:
+        1fr
+        1fr
+        1fr;
+
+      background: #ffffff;
+
+      border-top: 1px solid #dce8e6;
+
+      box-shadow:
+        0 -7px 25px rgba(0,0,0,.08);
+    }
+
+
+    .mobile-cta a {
+      min-height: 55px;
+
+      display: grid;
+      place-items: center;
+
+      padding: 5px;
+
+      border-right: 1px solid #e5eeee;
+
+      font-size: 12px;
+      font-weight: 850;
+    }
+
+
+    .mobile-cta a:last-child {
+      background: #087f7b;
+      color: #ffffff;
+
+      border-right: 0;
+    }
+
+
+    /* =========================================================
+       TABLET
+    ========================================================= */
+
+    @media (min-width: 700px) {
+
+      .container {
+        width: min(
+          1120px,
+          calc(100% - 48px)
+        );
+      }
+
+
+      .desktop-nav {
+        display: flex;
+      }
+
+
+      .header-cta {
+        display: inline-flex;
+      }
+
+
+      .hero {
+        padding: 80px 0 65px;
+      }
+
+
+      .hero-grid {
+        grid-template-columns:
+          1.05fr
+          .95fr;
+      }
+
+
+      .service-card {
+        flex-basis: 46%;
+      }
+
+
+      .dentist-grid {
+        grid-template-columns:
+          .85fr
+          1.15fr;
+      }
+
+
+      .why-grid {
+        grid-template-columns:
+          repeat(3,1fr);
+      }
+
+
+      .review-grid {
+        grid-template-columns:
+          repeat(3,1fr);
+      }
+
+
+      .appointment-grid {
+        grid-template-columns:
+          1fr
+          .82fr;
+      }
+
+
+      .visit-grid {
+        grid-template-columns:
+          .8fr
+          1.2fr;
+      }
+
+
+      .footer-grid {
+        grid-template-columns:
+          1.6fr
+          1fr
+          1fr
+          .7fr;
+      }
+
+
+      .mobile-cta {
+        display: none;
+      }
+
+
+      .site-footer {
+        padding-bottom: 45px;
+      }
+
+    }
+
+
+    /* =========================================================
+       DESKTOP
+    ========================================================= */
+
+    @media (min-width: 1000px) {
+
+      .section {
+        padding: 95px 0;
+      }
+
+
+      .service-card {
+        flex-basis: 31%;
+      }
+
+
+      .hero-image {
+        min-height: 450px;
+      }
+
+    }
+
+
+    /* =========================================================
+       REDUCED MOTION
+    ========================================================= */
+
+    @media (prefers-reduced-motion: reduce) {
+
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition: none !important;
+        animation: none !important;
+      }
+
+    }
+
+  </style>
+
 </head>
 
 
 <body>
 
 
-<!-- ======================================================
-     TOP BAR
-======================================================= -->
-
-<div class="topbar">
-
-<div class="container topbar-inner">
-
-<span class="topbar-location">
-📍 Proddatur, Andhra Pradesh
-</span>
-
-<a href="tel:+919999999999">
-📞 Call SmileCare
-</a>
-
-</div>
-
-</div>
-
-
-<!-- ======================================================
-     HEADER
-======================================================= -->
-
-<header>
-
-<div class="container navbar">
-
-<a href="#" class="logo">
-Smile<span>Care</span>
-</a>
-
-
-<nav class="nav-links">
-
-<a href="#services">
-Services
-</a>
-
-<a href="#doctor">
-Dentist
-</a>
-
-<a href="#why">
-Why SmileCare
-</a>
-
-<a href="#location">
-Location
-</a>
-
 <a
-href="#appointment"
-class="nav-cta"
+  class="skip-link"
+  href="#main"
 >
-Book Appointment
+  Skip to content
 </a>
 
-</nav>
 
-</div>
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header class="site-header">
+
+  <div class="container header-inner">
+
+    <a
+      class="logo"
+      href="#"
+      aria-label="SmileCare Dental Clinic home"
+    >
+
+      <span class="logo-mark">
+        ✦
+      </span>
+
+      <span class="logo-text">
+        Smile<span>Care</span>
+      </span>
+
+    </a>
+
+
+    <nav
+      class="desktop-nav"
+      aria-label="Primary navigation"
+    >
+
+      <a href="#services">
+        Services
+      </a>
+
+      <a href="#dentist">
+        Your Dentist
+      </a>
+
+      <a href="#reviews">
+        Reviews
+      </a>
+
+      <a href="#visit">
+        Visit Us
+      </a>
+
+    </nav>
+
+
+    <a
+      class="btn btn-primary header-cta"
+      href="#appointment"
+    >
+      Book Appointment
+    </a>
+
+  </div>
 
 </header>
 
 
-<!-- ======================================================
+<main id="main">
+
+
+<!-- =========================================================
      HERO
-======================================================= -->
+========================================================= -->
 
 <section class="hero">
 
-<div class="container hero-grid">
+  <div class="container hero-grid">
 
-<div>
+    <div>
 
-<div class="eyebrow">
-Dental Care in Proddatur
-</div>
-
-<h1>
-A healthier smile starts with
-<span>the right care.</span>
-</h1>
-
-<p class="hero-text">
-Personalised dental care from a local dentist,
-with a focus on your comfort, concerns and
-long-term oral health.
-</p>
-
-<div class="hero-buttons">
-
-<a
-href="#appointment"
-class="btn btn-primary"
->
-Book an Appointment
-</a>
-
-<a
-href="tel:+919999999999"
-class="btn btn-secondary"
->
-Call the Clinic
-</a>
-
-</div>
-
-</div>
+      <p class="eyebrow">
+        Trusted dental care in Proddatur
+      </p>
 
 
-<div class="hero-card">
+      <h1>
+        Healthy smiles.
+        Personal care.
+        <span>One dentist you can trust.</span>
+      </h1>
 
-<div class="hero-placeholder">
 
-<div class="icon">
-🦷
-</div>
+      <p class="hero-description">
+        Comfort-focused dental care for you and your family,
+        with clear guidance from consultation through treatment.
+      </p>
 
-<strong>
-SmileCare
-</strong>
 
-<p>
-Your real clinic / dentist photograph goes here.
-</p>
+      <div class="hero-actions">
 
-</div>
+        <a
+          class="btn btn-primary"
+          href="#appointment"
+        >
+          Book Appointment
+        </a>
 
-</div>
 
-</div>
+        <a
+          class="btn btn-secondary"
+          href="tel:+919999999999"
+        >
+          Call Clinic
+        </a>
+
+      </div>
+
+
+      <div class="trust-strip">
+
+        <div class="trust-item">
+
+          <strong>
+            4.9/5
+          </strong>
+
+          <span>
+            Patient rating
+          </span>
+
+        </div>
+
+
+        <div class="trust-item">
+
+          <strong>
+            10+
+          </strong>
+
+          <span>
+            Years experience
+          </span>
+
+        </div>
+
+
+        <div class="trust-item">
+
+          <strong>
+            1:1
+          </strong>
+
+          <span>
+            Personal attention
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!--
+      Inline SVG means no image dependency.
+      Replace this entire block with a real clinic/dentist image
+      when the actual clinic assets are available.
+    -->
+
+    <div class="hero-visual">
+
+      <div class="hero-image">
+
+        <svg
+          viewBox="0 0 720 560"
+          role="img"
+          aria-label="Dentist consulting with a patient"
+        >
+
+          <defs>
+
+            <linearGradient
+              id="heroBg"
+              x1="0"
+              x2="1"
+            >
+
+              <stop
+                offset="0%"
+                stop-color="#d3ece8"
+              />
+
+              <stop
+                offset="100%"
+                stop-color="#f7fcfb"
+              />
+
+            </linearGradient>
+
+          </defs>
+
+
+          <rect
+            width="720"
+            height="560"
+            fill="url(#heroBg)"
+          />
+
+
+          <circle
+            cx="590"
+            cy="100"
+            r="80"
+            fill="#ffffff"
+            opacity=".6"
+          />
+
+
+          <circle
+            cx="110"
+            cy="455"
+            r="105"
+            fill="#b9dfda"
+            opacity=".45"
+          />
+
+
+          <!-- clinic window -->
+
+          <rect
+            x="70"
+            y="80"
+            width="350"
+            height="235"
+            rx="22"
+            fill="#ffffff"
+            opacity=".9"
+          />
+
+
+          <rect
+            x="105"
+            y="115"
+            width="125"
+            height="95"
+            rx="12"
+            fill="#c4e5e1"
+          />
+
+
+          <rect
+            x="250"
+            y="118"
+            width="130"
+            height="13"
+            rx="6"
+            fill="#c3d8d6"
+          />
+
+
+          <rect
+            x="250"
+            y="147"
+            width="100"
+            height="11"
+            rx="5"
+            fill="#d8e6e4"
+          />
+
+
+          <rect
+            x="250"
+            y="173"
+            width="118"
+            height="11"
+            rx="5"
+            fill="#d8e6e4"
+          />
+
+
+          <!-- dentist body -->
+
+          <path
+            d="
+              M190 430
+              C185 340 225 275 292 275
+              C358 275 400 335 397 430
+              Z
+            "
+            fill="#0b7773"
+          />
+
+
+          <!-- neck -->
+
+          <rect
+            x="272"
+            y="270"
+            width="45"
+            height="45"
+            rx="15"
+            fill="#d7a47e"
+          />
+
+
+          <!-- face -->
+
+          <circle
+            cx="294"
+            cy="245"
+            r="48"
+            fill="#d9a781"
+          />
+
+
+          <!-- hair -->
+
+          <path
+            d="
+              M247 244
+              C248 181 337 176 346 245
+              C320 226 277 225 247 244
+              Z
+            "
+            fill="#3d3030"
+          />
+
+
+          <!-- eyes -->
+
+          <circle
+            cx="276"
+            cy="249"
+            r="4"
+            fill="#333333"
+          />
+
+
+          <circle
+            cx="313"
+            cy="249"
+            r="4"
+            fill="#333333"
+          />
+
+
+          <!-- coat -->
+
+          <path
+            d="
+              M257 325
+              L294 370
+              L331 325
+              L360 430
+              L225 430
+              Z
+            "
+            fill="#ffffff"
+          />
+
+
+          <!-- patient -->
+
+          <circle
+            cx="505"
+            cy="290"
+            r="43"
+            fill="#d5a27d"
+          />
+
+
+          <path
+            d="
+              M465 288
+              C468 235 540 232 550 290
+              C525 275 490 274 465 288
+              Z
+            "
+            fill="#503d39"
+          />
+
+
+          <path
+            d="
+              M445 430
+              C445 350 472 326 507 326
+              C542 326 570 352 573 430
+              Z
+            "
+            fill="#b7d9d6"
+          />
+
+
+          <!-- dental monitor -->
+
+          <rect
+            x="485"
+            y="110"
+            width="155"
+            height="100"
+            rx="17"
+            fill="#ffffff"
+          />
+
+
+          <rect
+            x="505"
+            y="130"
+            width="115"
+            height="10"
+            rx="5"
+            fill="#cce3e0"
+          />
+
+
+          <rect
+            x="505"
+            y="155"
+            width="85"
+            height="10"
+            rx="5"
+            fill="#dce9e7"
+          />
+
+
+          <circle
+            cx="598"
+            cy="184"
+            r="13"
+            fill="#d9f2ee"
+          />
+
+
+          <path
+            d="M592 184 L597 189 L606 177"
+            fill="none"
+            stroke="#087f7b"
+            stroke-width="4"
+            stroke-linecap="round"
+          />
+
+        </svg>
+
+      </div>
+
+
+      <div class="floating-card">
+
+        <span class="floating-check">
+          ✓
+        </span>
+
+        <div>
+
+          <strong>
+            Gentle, clear care
+          </strong>
+
+          <small>
+            We explain your options before treatment.
+          </small>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
 
 </section>
 
 
-<!-- ======================================================
-     TRUST STRIP
-======================================================= -->
-
-<div class="trust-strip">
-
-<div class="container trust-grid">
-
-<div class="trust-item">
-
-<strong>
-Personalised Care
-</strong>
-
-<span>
-Focused on your needs
-</span>
-
-</div>
-
-
-<div class="trust-item">
-
-<strong>
-Experienced Dentist
-</strong>
-
-<span>
-Direct professional care
-</span>
-
-</div>
-
-
-<div class="trust-item">
-
-<strong>
-Modern Approach
-</strong>
-
-<span>
-Patient-focused treatment
-</span>
-
-</div>
-
-
-<div class="trust-item">
-
-<strong>
-Proddatur
-</strong>
-
-<span>
-Convenient local care
-</span>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- ======================================================
+<!-- =========================================================
      SERVICES
-======================================================= -->
+========================================================= -->
 
 <section
-id="services"
-class="services"
+  class="section services"
+  id="services"
 >
 
-<div class="container">
+  <div class="container">
 
+    <div class="section-heading">
 
-<div class="section-heading">
+      <p class="eyebrow">
+        Our dental services
+      </p>
 
-<div class="section-label">
-Dental Services
-</div>
+      <h2>
+        Care for the problems patients actually search for.
+      </h2>
 
-<h2>
-Care for your smile at every stage.
-</h2>
+      <p>
+        Start with a consultation. We’ll assess your needs
+        and explain the next best step.
+      </p>
 
-<p>
-Explore some of the dental treatments available
-at SmileCare. Select a service to learn more.
-</p>
+    </div>
 
-</div>
 
+    <div
+      class="service-carousel"
+      aria-label="Dental services"
+    >
 
-<!-- SERVICE QUICK NAV -->
+      <button
+        class="carousel-btn"
+        id="previousService"
+        type="button"
+        aria-label="Previous service"
+      >
+        ←
+      </button>
 
-<div class="service-nav">
 
-<button
-data-index="0"
-class="active"
->
-General Dentistry
-</button>
+      <div
+        class="service-track"
+        id="serviceTrack"
+      >
 
-<button data-index="1">
-Teeth Cleaning
-</button>
 
-<button data-index="2">
-Root Canal
-</button>
+        <article
+          class="service-card active"
+          data-service="checkup"
+        >
 
-<button data-index="3">
-Crowns & Bridges
-</button>
+          <div class="service-icon">
+            ◌
+          </div>
+
+          <h3>
+            Dental Check-up
+          </h3>
 
-<button data-index="4">
-Dental Implants
-</button>
+          <p>
+            Routine examination, preventive advice
+            and early detection.
+          </p>
 
-<button data-index="5">
-Aligners & Braces
-</button>
+          <button
+            class="service-link"
+            type="button"
+          >
+            View FAQ →
+          </button>
 
-<button data-index="6">
-Cosmetic Dentistry
-</button>
+        </article>
 
-<button data-index="7">
-Teeth Whitening
-</button>
 
-<button data-index="8">
-Dentures
-</button>
+        <article
+          class="service-card"
+          data-service="cleaning"
+        >
 
-<button data-index="9">
-Children's Dentistry
-</button>
+          <div class="service-icon">
+            ✦
+          </div>
+
+          <h3>
+            Teeth Cleaning
+          </h3>
 
-</div>
+          <p>
+            Professional cleaning to remove plaque,
+            tartar and surface stains.
+          </p>
 
+          <button
+            class="service-link"
+            type="button"
+          >
+            View FAQ →
+          </button>
 
-<!-- CAROUSEL -->
+        </article>
 
-<div class="carousel-wrapper">
 
-<div
-class="service-carousel"
-id="serviceCarousel"
->
+        <article
+          class="service-card"
+          data-service="fillings"
+        >
 
+          <div class="service-icon">
+            +
+          </div>
 
-<!-- CARD 1 -->
+          <h3>
+            Dental Fillings
+          </h3>
 
-<article
-class="service-card focused"
-data-index="0"
-id="service-general"
->
+          <p>
+            Repair cavities and protect weakened teeth
+            with suitable restorations.
+          </p>
 
-<div class="service-image">
-🦷
-</div>
+          <button
+            class="service-link"
+            type="button"
+          >
+            View FAQ →
+          </button>
 
-<div class="service-content">
+        </article>
 
-<h3>
-General Dentistry
-</h3>
 
-<p>
-Routine dental care, diagnosis and treatment
-for common oral health concerns.
-</p>
+        <article
+          class="service-card"
+          data-service="root-canal"
+        >
 
-<div class="faq-mini">
+          <div class="service-icon">
+            ◇
+          </div>
 
-<strong>
-When should I visit a dentist?
-</strong>
+          <h3>
+            Root Canal Care
+          </h3>
 
-<p>
-Regular check-ups can help identify problems
-before they become more serious.
-</p>
+          <p>
+            Assessment and treatment for infected
+            or severely damaged teeth.
+          </p>
 
-</div>
+          <button
+            class="service-link"
+            type="button"
+          >
+            View FAQ →
+          </button>
 
-<div class="service-buttons">
+        </article>
 
-<a
-href="services/general-dentistry.html"
-class="btn btn-secondary"
->
-Learn More
-</a>
 
-<a
-href="#appointment"
-class="btn btn-primary"
->
-Book Appointment
-</a>
+        <article
+          class="service-card"
+          data-service="crowns"
+        >
 
-</div>
+          <div class="service-icon">
+            ♢
+          </div>
 
-</div>
+          <h3>
+            Crowns & Bridges
+          </h3>
 
-</article>
+          <p>
+            Restore function and appearance when
+            a tooth needs stronger support.
+          </p>
 
+          <button
+            class="service-link"
+            type="button"
+          >
+            View FAQ →
+          </button>
 
-<!-- CARD 2 -->
+        </article>
 
-<article
-class="service-card"
-data-index="1"
-id="service-cleaning"
->
 
-<div class="service-image">
-✨
-</div>
+      </div>
 
-<div class="service-content">
 
-<h3>
-Teeth Cleaning & Prevention
-</h3>
+      <button
+        class="carousel-btn"
+        id="nextService"
+        type="button"
+        aria-label="Next service"
+      >
+        →
+      </button>
 
-<p>
-Professional cleaning and guidance to help
-maintain good oral hygiene.
-</p>
+    </div>
 
-<div class="faq-mini">
 
-<strong>
-How often should teeth be cleaned?
-</strong>
+    <div
+      class="service-faq"
+      id="serviceFaq"
+      aria-live="polite"
+    >
 
-<p>
-Your dentist can recommend a suitable schedule
-based on your oral health.
-</p>
+      <div>
 
-</div>
+        <p class="faq-label">
+          Dental Check-up
+        </p>
 
-<div class="service-buttons">
+        <h3>
+          What happens during a check-up?
+        </h3>
 
-<a
-href="services/teeth-cleaning.html"
-class="btn btn-secondary"
->
-Learn More
-</a>
+        <p>
+          We examine your teeth and gums, discuss any symptoms
+          and recommend only the next appropriate step.
+        </p>
 
-<a
-href="#appointment"
-class="btn btn-primary"
->
-Book Appointment
-</a>
+      </div>
 
-</div>
 
-</div>
+      <a
+        class="btn btn-outline"
+        href="#appointment"
+      >
+        Ask About This
+      </a>
 
-</article>
+    </div>
 
-
-<!-- CARD 3 -->
-
-<article
-class="service-card"
-data-index="2"
-id="service-root-canal"
->
-
-<div class="service-image">
-🦷
-</div>
-
-<div class="service-content">
-
-<h3>
-Root Canal Treatment
-</h3>
-
-<p>
-Treatment aimed at addressing infection or
-damage within a tooth while preserving it.
-</p>
-
-<div class="faq-mini">
-
-<strong>
-Is root canal treatment painful?
-</strong>
-
-<p>
-Modern techniques and local anaesthesia can
-make treatment considerably more comfortable.
-</p>
-
-</div>
-
-<div class="service-buttons">
-
-<a
-href="services/root-canal.html"
-class="btn btn-secondary"
->
-Learn More
-</a>
-
-<a
-href="#appointment"
-class="btn btn-primary"
->
-Book Appointment
-</a>
-
-</div>
-
-</div>
-
-</article>
-
-
-<!-- CARD 4 -->
-
-<article
-class="service-card"
-data-index="3"
-id="service-crowns"
->
-
-<div class="service-image">
-😁
-</div>
-
-<div class="service-content">
-
-<h3>
-Crowns & Bridges
-</h3>
-
-<p>
-Restorative options that can help protect or
-replace damaged or missing teeth.
-</p>
-
-<div class="faq-mini">
-
-<strong>
-When might a crown be needed?
-</strong>
-
-<p>
-A dentist can assess whether a damaged tooth
-may benefit from a crown.
-</p>
-
-</div>
-
-<div class="service-buttons">
-
-<a
-href="services/crowns-bridges.html"
-class="btn btn-secondary"
->
-Learn More
-</a>
-
-<a
-href="#appointment"
-class="btn btn-primary"
->
-Book Appointment
-</a>
-
-</div>
-
-</div>
-
-</article>
-
-
-<!-- CARD 5 -->
-
-<article
-class="service-card"
-data-index="4"
-id="service-implants"
->
-
-<div class="service-image">
-🦷
-</div>
-
-<div class="service-content">
-
-<h3>
-Dental Implants
-</h3>
-
-<p>
-A treatment option for replacing missing teeth,
-subject to individual assessment.
-</p>
-
-<div class="faq-mini">
-
-<strong>
-Are implants suitable for everyone?
-</strong>
-
-<p>
-Suitability depends on your oral and general
-health and requires professional evaluation.
-</p>
-
-</div>
-
-<div class="service-buttons">
-
-<a
-href="services/dental-implants.html"
-class="btn btn-secondary"
->
-Learn More
-</a>
-
-<a
-href="#appointment"
-class="btn btn-primary"
->
-Book Appointment
-</a>
-
-</div>
-
-</div>
-
-</article>
-
-
-<!-- CARD 6 -->
-
-<article
-class="service-card"
-data-index="5"
-id="service-aligners"
->
-
-<div class="service-image">
-😁
-</div>
-
-<div class="service-content">
-
-<h3>
-Aligners & Braces
-</h3>
-
-<p>
-Orthodontic options designed to help improve
-tooth alignment and your smile.
-</p>
-
-<div class="faq-mini">
-
-<strong>
-Are aligners suitable for everyone?
-</strong>
-
-<p>
-Your dentist or orthodontic professional can
-assess which option is appropriate.
-</p>
-
-</div>
-
-<div class="service-buttons">
-
-<a
-href="services/aligners-braces.html"
-class="btn btn-secondary"
->
-Learn More
-</a>
-
-<a
-href="#appointment"
-class="btn btn-primary"
->
-Book Appointment
-</a>
-
-</div>
-
-</div>
-
-</article>
-
-
-<!-- CARD 7 -->
-
-<article
-class="service-card"
-data-index="6"
-id="service-cosmetic"
->
-
-<div class="service-image">
-✨
-</div>
-
-<div class="service-content">
-
-<h3>
-Cosmetic Dentistry
-</h3>
-
-<p>
-Treatment options intended to improve the
-appearance of your smile.
-</p>
-
-<div class="faq-mini">
-
-<strong>
-What cosmetic options are available?
-</strong>
-
-<p>
-Available options depend on your teeth,
-oral health and desired outcome.
-</p>
-
-</div>
-
-<div class="service-buttons">
-
-<a
-href="services/cosmetic-dentistry.html"
-class="btn btn-secondary"
->
-Learn More
-</a>
-
-<a
-href="#appointment"
-class="btn btn-primary"
->
-Book Appointment
-</a>
-
-</div>
-
-</div>
-
-</article>
-
-
-<!-- CARD 8 -->
-
-<article
-class="service-card"
-data-index="7"
-id="service-whitening"
->
-
-<div class="service-image">
-😁
-</div>
-
-<div class="service-content">
-
-<h3>
-Teeth Whitening
-</h3>
-
-<p>
-Professional options for improving the
-appearance of tooth colour.
-</p>
-
-<div class="faq-mini">
-
-<strong>
-Is teeth whitening permanent?
-</strong>
-
-<p>
-Results vary and can change over time depending
-on individual habits and oral health.
-</p>
-
-</div>
-
-<div class="service-buttons">
-
-<a
-href="services/teeth-whitening.html"
-class="btn btn-secondary"
->
-Learn More
-</a>
-
-<a
-href="#appointment"
-class="btn btn-primary"
->
-Book Appointment
-</a>
-
-</div>
-
-</div>
-
-</article>
-
-
-<!-- CARD 9 -->
-
-<article
-class="service-card"
-data-index="8"
-id="service-dentures"
->
-
-<div class="service-image">
-🦷
-</div>
-
-<div class="service-content">
-
-<h3>
-Dentures
-</h3>
-
-<p>
-Options for replacing multiple missing teeth
-and supporting everyday function.
-</p>
-
-<div class="faq-mini">
-
-<strong>
-Are dentures comfortable?
-</strong>
-
-<p>
-Comfort and fit depend on the individual
-and proper professional fitting.
-</p>
-
-</div>
-
-<div class="service-buttons">
-
-<a
-href="services/dentures.html"
-class="btn btn-secondary"
->
-Learn More
-</a>
-
-<a
-href="#appointment"
-class="btn btn-primary"
->
-Book Appointment
-</a>
-
-</div>
-
-</div>
-
-</article>
-
-
-<!-- CARD 10 -->
-
-<article
-class="service-card"
-data-index="9"
-id="service-kids"
->
-
-<div class="service-image">
-😊
-</div>
-
-<div class="service-content">
-
-<h3>
-Children's Dentistry
-</h3>
-
-<p>
-Preventive and general dental care designed
-around younger patients.
-</p>
-
-<div class="faq-mini">
-
-<strong>
-When should children first see a dentist?
-</strong>
-
-<p>
-A dental professional can advise on an
-appropriate schedule for your child.
-</p>
-
-</div>
-
-<div class="service-buttons">
-
-<a
-href="services/childrens-dentistry.html"
-class="btn btn-secondary"
->
-Learn More
-</a>
-
-<a
-href="#appointment"
-class="btn btn-primary"
->
-Book Appointment
-</a>
-
-</div>
-
-</div>
-
-</article>
-
-
-</div>
-
-
-<!-- CAROUSEL CONTROLS -->
-
-<div class="carousel-controls">
-
-<button
-class="carousel-btn"
-id="prevService"
-aria-label="Previous service"
->
-←
-</button>
-
-<button
-class="carousel-btn"
-id="nextService"
-aria-label="Next service"
->
-→
-</button>
-
-</div>
-
-</div>
-
-</div>
+  </div>
 
 </section>
 
 
-<!-- ======================================================
-     DOCTOR
-======================================================= -->
+<!-- =========================================================
+     DENTIST
+========================================================= -->
 
-<section id="doctor">
-
-<div class="container about-grid">
-
-
-<div class="doctor-placeholder">
-
-<div>
-
-<div style="font-size:60px;">
-👨‍⚕️
-</div>
-
-<p>
-Replace this with the dentist's
-professional photograph.
-</p>
-
-</div>
-
-</div>
-
-
-<div class="about-content">
-
-<div class="section-label">
-Your Dentist
-</div>
-
-<h2>
-Personal attention from your dentist.
-</h2>
-
-<p>
-At SmileCare, your treatment begins with understanding
-your concerns and dental needs.
-</p>
-
-<p>
-The clinic is built around a simple idea:
-professional dental care should feel clear,
-comfortable and personal.
-</p>
-
-<ul class="check-list">
-
-<li>
-One-on-one professional consultation
-</li>
-
-<li>
-Treatment explained before proceeding
-</li>
-
-<li>
-Patient-focused approach
-</li>
-
-<li>
-Clear guidance on next steps
-</li>
-
-</ul>
-
-<a
-href="#appointment"
-class="btn btn-primary"
+<section
+  class="section dentist"
+  id="dentist"
 >
-Book a Consultation
-</a>
 
-</div>
+  <div class="container dentist-grid">
 
-</div>
+
+    <div class="dentist-photo">
+
+      <svg
+        viewBox="0 0 500 500"
+        role="img"
+        aria-label="Illustration representing the SmileCare dentist"
+      >
+
+        <rect
+          width="500"
+          height="500"
+          fill="#c9e5e1"
+        />
+
+        <circle
+          cx="250"
+          cy="178"
+          r="78"
+          fill="#d7a37d"
+        />
+
+        <path
+          d="
+            M173 175
+            C175 75 325 70 328 180
+            C286 147 220 146 173 175
+            Z
+          "
+          fill="#403434"
+        />
+
+        <circle
+          cx="220"
+          cy="183"
+          r="6"
+          fill="#333"
+        />
+
+        <circle
+          cx="280"
+          cy="183"
+          r="6"
+          fill="#333"
+        />
+
+        <path
+          d="
+            M218 220
+            C240 235 260 235 282 220
+          "
+          fill="none"
+          stroke="#7a4b42"
+          stroke-width="5"
+          stroke-linecap="round"
+        />
+
+        <path
+          d="
+            M110 500
+            C115 350 165 295 250 295
+            C335 295 385 350 390 500
+            Z
+          "
+          fill="#ffffff"
+        />
+
+        <path
+          d="
+            M210 300
+            L250 370
+            L290 300
+          "
+          fill="#087f7b"
+        />
+
+        <circle
+          cx="250"
+          cy="370"
+          r="18"
+          fill="#dff4f1"
+        />
+
+      </svg>
+
+    </div>
+
+
+    <div class="dentist-content">
+
+      <p class="eyebrow">
+        Your dentist
+      </p>
+
+      <h2>
+        Dr. Ananya Reddy
+      </h2>
+
+      <p class="lead">
+        A patient-first approach to practical,
+        comfortable dental care.
+      </p>
+
+      <p>
+        SmileCare is intentionally built around a
+        single-doctor model: you know who is treating you,
+        and your consultation stays focused on your concerns.
+      </p>
+
+
+      <ul class="check-list">
+
+        <li>
+          Clear explanations before treatment
+        </li>
+
+        <li>
+          Comfort-conscious appointments
+        </li>
+
+        <li>
+          Personalised treatment planning
+        </li>
+
+      </ul>
+
+
+      <a
+        class="btn btn-primary"
+        href="#appointment"
+      >
+        Book a Consultation
+      </a>
+
+    </div>
+
+  </div>
 
 </section>
 
 
-<!-- ======================================================
+<!-- =========================================================
      WHY SMILECARE
-======================================================= -->
+========================================================= -->
 
-<section
-id="why"
-class="why"
->
+<section class="section">
 
-<div class="container">
+  <div class="container">
 
-<div class="section-heading center">
+    <div class="section-heading centered">
 
-<div class="section-label">
-Why SmileCare
-</div>
+      <p class="eyebrow">
+        Why SmileCare
+      </p>
 
-<h2>
-Dental care that starts with listening.
-</h2>
+      <h2>
+        Less uncertainty. Better dental decisions.
+      </h2>
 
-<p>
-A simple, patient-focused approach to
-your dental care in Proddatur.
-</p>
-
-</div>
+    </div>
 
 
-<div class="feature-grid">
+    <div class="why-grid">
 
 
-<div class="feature-card">
+      <article class="why-card">
 
-<div class="feature-icon">
-🩺
-</div>
+        <span class="why-number">
+          01
+        </span>
 
-<h3>
-Personalised Consultation
-</h3>
+        <h3>
+          Personal attention
+        </h3>
 
-<p>
-Your concerns and dental needs are assessed
-before deciding on treatment.
-</p>
+        <p>
+          One dentist keeps your care consistent
+          and conversations straightforward.
+        </p>
 
-</div>
-
-
-<div class="feature-card">
-
-<div class="feature-icon">
-💬
-</div>
-
-<h3>
-Clear Communication
-</h3>
-
-<p>
-Understand your treatment options and
-what to expect before proceeding.
-</p>
-
-</div>
+      </article>
 
 
-<div class="feature-card">
+      <article class="why-card">
 
-<div class="feature-icon">
-📍
-</div>
+        <span class="why-number">
+          02
+        </span>
 
-<h3>
-Conveniently in Proddatur
-</h3>
+        <h3>
+          Clear next steps
+        </h3>
 
-<p>
-Accessible local dental care without
-having to travel far for every consultation.
-</p>
+        <p>
+          Understand what we found, what matters now,
+          and what can wait.
+        </p>
 
-</div>
+      </article>
 
 
-</div>
+      <article class="why-card">
 
-</div>
+        <span class="why-number">
+          03
+        </span>
+
+        <h3>
+          Convenient access
+        </h3>
+
+        <p>
+          Call, WhatsApp or send a short enquiry
+          directly from your phone.
+        </p>
+
+      </article>
+
+
+    </div>
+
+  </div>
 
 </section>
 
 
-<!-- ======================================================
+<!-- =========================================================
+     REVIEWS
+========================================================= -->
+
+<section
+  class="section reviews"
+  id="reviews"
+>
+
+  <div class="container">
+
+    <div class="section-heading">
+
+      <p class="eyebrow">
+        Patient reviews
+      </p>
+
+      <h2>
+        What patients say about their experience.
+      </h2>
+
+    </div>
+
+
+    <div class="review-grid">
+
+
+      <figure class="review-card">
+
+        <div class="stars">
+          ★★★★★
+        </div>
+
+        <blockquote>
+          “The doctor explained everything clearly
+          and made the appointment feel much less stressful.”
+        </blockquote>
+
+        <figcaption>
+          — Priya, Proddatur
+        </figcaption>
+
+      </figure>
+
+
+      <figure class="review-card">
+
+        <div class="stars">
+          ★★★★★
+        </div>
+
+        <blockquote>
+          “Easy to contact, friendly care and no confusing
+          explanations. I knew what to do next.”
+        </blockquote>
+
+        <figcaption>
+          — Ravi, Proddatur
+        </figcaption>
+
+      </figure>
+
+
+      <figure class="review-card">
+
+        <div class="stars">
+          ★★★★★
+        </div>
+
+        <blockquote>
+          “A very comfortable experience.
+          The consultation was focused on my actual concern.”
+        </blockquote>
+
+        <figcaption>
+          — Sneha, Proddatur
+        </figcaption>
+
+      </figure>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
      APPOINTMENT
-======================================================= -->
+========================================================= -->
 
 <section
-id="appointment"
-class="appointment"
+  class="section appointment"
+  id="appointment"
 >
 
-<div class="container appointment-grid">
+  <div class="container appointment-grid">
 
 
-<div>
+    <div>
 
-<div class="section-label">
-Appointments
-</div>
+      <p class="eyebrow">
+        Ready when you are
+      </p>
 
-<h2>
-Let's talk about your dental needs.
-</h2>
+      <h2>
+        Tell us what you need help with.
+      </h2>
 
-<p class="appointment-intro">
-Have a question, concern or treatment in mind?
-Send an enquiry and SmileCare can get back to you
-with the next available appointment information.
-</p>
-
-
-<div class="contact-links">
-
-<a href="tel:+919999999999">
-📞 +91 99999 99999
-</a>
-
-<a
-href="https://wa.me/919999999999"
-target="_blank"
->
-💬 Chat on WhatsApp
-</a>
-
-</div>
-
-</div>
+      <p class="appointment-intro">
+        Leave your details and the clinic can contact you
+        to confirm a suitable appointment time.
+      </p>
 
 
-<form
-class="form"
-id="appointmentForm"
->
-
-<div class="form-group">
-
-<label for="name">
-Your Name
-</label>
-
-<input
-type="text"
-id="name"
-name="name"
-placeholder="Enter your name"
-required
->
-
-</div>
+      <div class="direct-actions">
 
 
-<div class="form-group">
+        <a
+          class="action-card"
+          href="tel:+919999999999"
+        >
 
-<label for="phone">
-Phone Number
-</label>
+          <span class="action-icon">
+            ☎
+          </span>
 
-<input
-type="tel"
-id="phone"
-name="phone"
-placeholder="Enter your phone number"
-required
->
+          <div>
 
-</div>
+            <strong>
+              Call Clinic
+            </strong>
 
+            <small>
+              +91 99999 99999
+            </small>
 
-<div class="form-group">
+          </div>
 
-<label for="service">
-What would you like help with?
-</label>
-
-<select
-id="service"
-name="service"
->
-
-<option value="">
-Select a service
-</option>
-
-<option>
-General Dentistry
-</option>
-
-<option>
-Teeth Cleaning
-</option>
-
-<option>
-Root Canal Treatment
-</option>
-
-<option>
-Crowns & Bridges
-</option>
-
-<option>
-Dental Implants
-</option>
-
-<option>
-Aligners & Braces
-</option>
-
-<option>
-Cosmetic Dentistry
-</option>
-
-<option>
-Teeth Whitening
-</option>
-
-<option>
-Dentures
-</option>
-
-<option>
-Children's Dentistry
-</option>
-
-<option>
-Not sure / Need advice
-</option>
-
-</select>
-
-</div>
+        </a>
 
 
-<div class="form-group">
+        <a
+          class="action-card"
+          href="https://wa.me/919999999999?text=Hello%20SmileCare%2C%20I%27d%20like%20to%20book%20an%20appointment."
+          target="_blank"
+          rel="noopener"
+        >
 
-<label for="message">
-Message
-</label>
+          <span class="action-icon">
+            ◉
+          </span>
 
-<textarea
-id="message"
-name="message"
-placeholder="Briefly tell us what you'd like help with..."
-></textarea>
+          <div>
 
-</div>
+            <strong>
+              WhatsApp
+            </strong>
 
+            <small>
+              Message the clinic
+            </small>
 
-<button
-type="submit"
-class="btn btn-primary"
->
-Request an Appointment
-</button>
+          </div>
+
+        </a>
 
 
-<p
-id="formMessage"
-style="
-margin-top:12px;
-font-size:13px;
-color:#66798a;
-"
->
-</p>
+      </div>
 
-</form>
+    </div>
 
-</div>
+
+    <!--
+      GOOGLE APPS SCRIPT READY
+
+      Replace:
+
+      YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL
+
+      with the deployed Apps Script Web App URL.
+
+      Fields sent:
+
+      source
+      page
+      name
+      phone
+      service
+      message
+    -->
+
+    <form
+      class="appointment-form"
+      id="appointmentForm"
+      action="YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL"
+      method="POST"
+    >
+
+      <input
+        type="hidden"
+        name="source"
+        value="smilecare-website"
+      >
+
+      <input
+        type="hidden"
+        name="page"
+        value="/"
+      >
+
+
+      <div class="form-group">
+
+        <label for="name">
+          Name
+          <span class="required">*</span>
+        </label>
+
+        <input
+          id="name"
+          name="name"
+          type="text"
+          autocomplete="name"
+          required
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label for="phone">
+          Phone
+          <span class="required">*</span>
+        </label>
+
+        <input
+          id="phone"
+          name="phone"
+          type="tel"
+          inputmode="tel"
+          autocomplete="tel"
+          required
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label for="service">
+          What do you need help with?
+        </label>
+
+        <select
+          id="service"
+          name="service"
+        >
+
+          <option value="">
+            Select an option
+          </option>
+
+          <option>
+            Dental Check-up
+          </option>
+
+          <option>
+            Teeth Cleaning
+          </option>
+
+          <option>
+            Dental Fillings
+          </option>
+
+          <option>
+            Root Canal Care
+          </option>
+
+          <option>
+            Crowns & Bridges
+          </option>
+
+          <option>
+            Other
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label for="message">
+          Message
+          <span class="optional">
+            (optional)
+          </span>
+        </label>
+
+        <textarea
+          id="message"
+          name="message"
+          rows="3"
+          placeholder="Tell us briefly what’s bothering you."
+        ></textarea>
+
+      </div>
+
+
+      <button
+        class="btn btn-primary btn-full"
+        type="submit"
+      >
+        Request Appointment
+      </button>
+
+
+      <p class="form-note">
+        We’ll contact you to confirm availability.
+        No payment is taken through this form.
+      </p>
+
+
+      <p
+        class="form-status"
+        id="formStatus"
+        role="status"
+        aria-live="polite"
+      ></p>
+
+    </form>
+
+  </div>
 
 </section>
 
 
-<!-- ======================================================
+<!-- =========================================================
      LOCATION
-======================================================= -->
+========================================================= -->
 
-<section id="location">
-
-<div class="container">
-
-<div class="section-heading">
-
-<div class="section-label">
-Visit SmileCare
-</div>
-
-<h2>
-Dental care in Proddatur.
-</h2>
-
-<p>
-Replace the placeholder information below with
-the clinic's actual details.
-</p>
-
-</div>
-
-
-<div class="location-grid">
-
-
-<div class="location-card">
-
-<h3>
-SmileCare
-</h3>
-
-<p>
-📍 Clinic Address<br>
-Proddatur, Andhra Pradesh
-</p>
-
-<br>
-
-<p>
-🕐 Opening Hours<br>
-Add actual clinic timings here.
-</p>
-
-<br>
-
-<p>
-📞 +91 99999 99999
-</p>
-
-<br>
-
-<a
-href="https://www.google.com/maps/search/?api=1&query=Proddatur%2C%20Andhra%20Pradesh"
-target="_blank"
-class="btn btn-primary"
+<section
+  class="section"
+  id="visit"
 >
-Get Directions
-</a>
 
-</div>
+  <div class="container visit-grid">
 
 
-<div class="map-placeholder">
+    <div>
 
-Replace this area with
-the clinic's Google Maps embed.
+      <p class="eyebrow">
+        Visit SmileCare
+      </p>
 
-</div>
+      <h2>
+        Conveniently located in Proddatur.
+      </h2>
 
 
-</div>
+      <div class="contact-details">
 
-</div>
+
+        <div class="contact-item">
+
+          <strong>
+            Address
+          </strong>
+
+          <span>
+            12-34, Main Road,
+            Proddatur,
+            Andhra Pradesh 516360
+          </span>
+
+        </div>
+
+
+        <div class="contact-item">
+
+          <strong>
+            Phone
+          </strong>
+
+          <a href="tel:+919999999999">
+            +91 99999 99999
+          </a>
+
+        </div>
+
+
+        <div class="contact-item">
+
+          <strong>
+            Business Hours
+          </strong>
+
+          <span>
+            Mon–Sat: 9:00 AM–7:00 PM<br>
+            Sunday: By appointment
+          </span>
+
+        </div>
+
+
+      </div>
+
+
+      <a
+        class="btn btn-outline"
+        href="https://www.google.com/maps/search/?api=1&query=Proddatur%2C%20Andhra%20Pradesh"
+        target="_blank"
+        rel="noopener"
+      >
+        Get Directions
+      </a>
+
+    </div>
+
+
+    <div class="map-wrapper">
+
+      <iframe
+        title="SmileCare Dental Clinic location in Proddatur"
+        loading="lazy"
+        src="https://www.google.com/maps?q=Proddatur%2C%20Andhra%20Pradesh&output=embed"
+      ></iframe>
+
+    </div>
+
+  </div>
 
 </section>
 
 
-<!-- ======================================================
+</main>
+
+
+<!-- =========================================================
      FOOTER
-======================================================= -->
+========================================================= -->
 
-<footer>
+<footer class="site-footer">
 
-<div class="container footer-grid">
-
-<div>
-
-<div class="logo">
-Smile<span>Care</span>
-</div>
-
-<p>
-Personalised dental care in Proddatur,
-Andhra Pradesh.
-</p>
-
-</div>
+  <div class="container footer-grid">
 
 
-<div class="footer-links">
+    <div class="footer-brand">
 
-<a href="#services">
-Services
-</a>
+      <a
+        class="logo"
+        href="#"
+      >
 
-<a href="#doctor">
-Dentist
-</a>
+        <span class="logo-mark">
+          ✦
+        </span>
 
-<a href="#appointment">
-Appointments
-</a>
+        <span class="logo-text">
+          Smile<span>Care</span>
+        </span>
 
-<a href="#location">
-Location
-</a>
+      </a>
 
-</div>
 
-</div>
+      <p>
+        Personalised dental care in Proddatur,
+        Andhra Pradesh.
+      </p>
+
+    </div>
+
+
+    <div class="footer-links">
+
+      <h3 class="footer-title">
+        Quick Links
+      </h3>
+
+      <a href="#services">
+        Services
+      </a>
+
+      <a href="#dentist">
+        Your Dentist
+      </a>
+
+      <a href="#reviews">
+        Reviews
+      </a>
+
+      <a href="#visit">
+        Visit Us
+      </a>
+
+    </div>
+
+
+    <div class="footer-links">
+
+      <h3 class="footer-title">
+        Contact
+      </h3>
+
+      <a href="tel:+919999999999">
+        +91 99999 99999
+      </a>
+
+      <a
+        href="https://wa.me/919999999999"
+        target="_blank"
+        rel="noopener"
+      >
+        WhatsApp
+      </a>
+
+      <a href="#appointment">
+        Book Appointment
+      </a>
+
+    </div>
+
+
+    <div>
+
+      <h3 class="footer-title">
+        Social
+      </h3>
+
+      <div class="social-links">
+
+        <a
+          href="#"
+          aria-label="Instagram"
+        >
+          IG
+        </a>
+
+        <a
+          href="#"
+          aria-label="Facebook"
+        >
+          FB
+        </a>
+
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+  <div class="container footer-bottom">
+
+    <span>
+      ©
+      <span id="year"></span>
+      SmileCare Dental Clinic
+    </span>
+
+    <span>
+      Demo website
+    </span>
+
+  </div>
 
 </footer>
 
 
-<!-- ======================================================
-     JAVASCRIPT
-======================================================= -->
+<!-- =========================================================
+     MOBILE CONVERSION BAR
+========================================================= -->
+
+<div class="mobile-cta">
+
+  <a href="tel:+919999999999">
+    ☎ Call
+  </a>
+
+  <a
+    href="https://wa.me/919999999999"
+    target="_blank"
+    rel="noopener"
+  >
+    ◉ WhatsApp
+  </a>
+
+  <a href="#appointment">
+    Book
+  </a>
+
+</div>
+
 
 <script>
 
+  /* =========================================================
+     SERVICE DATA
+  ========================================================= */
 
-/* =========================================================
-   SERVICE CAROUSEL
-========================================================= */
+  const serviceData = {
 
-const carousel =
-    document.getElementById(
-        "serviceCarousel"
-    );
+    checkup: {
+      title: "Dental Check-up",
+      question: "What happens during a check-up?",
+      answer:
+        "We examine your teeth and gums, discuss your symptoms and recommend only the next appropriate step."
+    },
 
-const cards =
-    document.querySelectorAll(
-        ".service-card"
-    );
+    cleaning: {
+      title: "Teeth Cleaning",
+      question: "How often should I get my teeth cleaned?",
+      answer:
+        "It depends on your oral health and buildup. During an examination, we can suggest an appropriate cleaning schedule."
+    },
 
-const serviceButtons =
-    document.querySelectorAll(
-        ".service-nav button"
-    );
+    fillings: {
+      title: "Dental Fillings",
+      question: "Will a filling hurt?",
+      answer:
+        "We use local anaesthesia where appropriate and explain the procedure before starting. Treatment is planned around your comfort."
+    },
 
-let currentIndex = 0;
+    "root-canal": {
+      title: "Root Canal Care",
+      question: "When might a root canal be needed?",
+      answer:
+        "Persistent tooth pain, sensitivity or infection can be signs. An examination and dental imaging may be needed to confirm the cause."
+    },
 
-
-/*
-    Focus a particular service.
-*/
-
-function focusService(index) {
-
-    if (index < 0) {
-        index = cards.length - 1;
+    crowns: {
+      title: "Crowns & Bridges",
+      question: "Why might I need a crown?",
+      answer:
+        "A crown can protect and restore a tooth that has lost substantial structure. We assess the tooth before recommending one."
     }
 
-    if (index >= cards.length) {
-        index = 0;
-    }
+  };
 
-    currentIndex = index;
 
-    const card = cards[index];
+  /* =========================================================
+     SERVICE CAROUSEL
+  ========================================================= */
 
-    /*
-        Remove previous focus.
-    */
+  const serviceTrack =
+    document.getElementById("serviceTrack");
 
-    cards.forEach(
-        c => c.classList.remove("focused")
-    );
 
-    serviceButtons.forEach(
-        b => b.classList.remove("active")
+  const serviceCards =
+    Array.from(
+      document.querySelectorAll(".service-card")
     );
 
 
-    /*
-        Focus new card.
-    */
-
-    card.classList.add("focused");
-
-    serviceButtons[index]
-        .classList.add("active");
+  const faq =
+    document.getElementById("serviceFaq");
 
 
-    /*
-        Move carousel.
-    */
+  function selectService(card) {
+
+    serviceCards.forEach(
+      item => item.classList.remove("active")
+    );
+
+
+    card.classList.add("active");
+
+
+    const key =
+      card.dataset.service;
+
+
+    const service =
+      serviceData[key];
+
+
+    faq.querySelector(".faq-label")
+      .textContent = service.title;
+
+
+    faq.querySelector("h3")
+      .textContent = service.question;
+
+
+    faq.querySelector(
+      "p:not(.faq-label)"
+    ).textContent = service.answer;
+
 
     card.scrollIntoView({
-        behavior: "smooth",
-        block: "nearest",
-        inline: "center"
+      behavior: "smooth",
+      block: "nearest",
+      inline: "center"
     });
 
-}
+  }
 
 
-/*
-    Quick navigation buttons.
-*/
+  serviceCards.forEach(card => {
 
-serviceButtons.forEach(
-    button => {
+    card.addEventListener(
+      "click",
+      () => selectService(card)
+    );
 
-        button.addEventListener(
-            "click",
-            () => {
-
-                const index =
-                    Number(
-                        button.dataset.index
-                    );
-
-                focusService(index);
-
-            }
-        );
-
-    }
-);
+  });
 
 
-/*
-    Clicking card itself focuses it.
-*/
-
-cards.forEach(
-    (card, index) => {
-
-        card.addEventListener(
-            "click",
-            event => {
-
-                /*
-                    Don't intercept links/buttons.
-                */
-
-                if (
-                    event.target.closest(
-                        "a, button"
-                    )
-                ) {
-                    return;
-                }
-
-                focusService(index);
-
-            }
-        );
-
-    }
-);
-
-
-/*
-    Previous.
-*/
-
-document
-    .getElementById("prevService")
+  document
+    .getElementById("previousService")
     .addEventListener(
-        "click",
-        () => {
+      "click",
+      () => {
 
-            focusService(
-                currentIndex - 1
-            );
+        serviceTrack.scrollBy({
+          left:
+            -serviceTrack.clientWidth * .85,
 
-        }
+          behavior: "smooth"
+        });
+
+      }
     );
 
 
-/*
-    Next.
-*/
-
-document
+  document
     .getElementById("nextService")
     .addEventListener(
-        "click",
-        () => {
+      "click",
+      () => {
 
-            focusService(
-                currentIndex + 1
-            );
+        serviceTrack.scrollBy({
+          left:
+            serviceTrack.clientWidth * .85,
 
-        }
+          behavior: "smooth"
+        });
+
+      }
     );
 
 
-/* =========================================================
-   TOUCH SWIPE
-========================================================= */
+  /* =========================================================
+     APPOINTMENT FORM
+  ========================================================= */
 
-let touchStartX = 0;
-let touchEndX = 0;
-
-carousel.addEventListener(
-    "touchstart",
-    event => {
-
-        touchStartX =
-            event.changedTouches[0].screenX;
-
-    },
-    {
-        passive: true
-    }
-);
+  const appointmentForm =
+    document.getElementById("appointmentForm");
 
 
-carousel.addEventListener(
-    "touchend",
-    event => {
-
-        touchEndX =
-            event.changedTouches[0].screenX;
-
-        const difference =
-            touchStartX - touchEndX;
-
-        /*
-            Minimum swipe distance.
-        */
-
-        if (
-            Math.abs(difference) < 50
-        ) {
-            return;
-        }
-
-        if (difference > 0) {
-
-            focusService(
-                currentIndex + 1
-            );
-
-        } else {
-
-            focusService(
-                currentIndex - 1
-            );
-
-        }
-
-    },
-    {
-        passive: true
-    }
-);
+  const formStatus =
+    document.getElementById("formStatus");
 
 
-/* =========================================================
-   APPOINTMENT FORM
-========================================================= */
-
-const form =
-    document.getElementById(
-        "appointmentForm"
-    );
-
-const formMessage =
-    document.getElementById(
-        "formMessage"
-    );
-
-
-form.addEventListener(
+  appointmentForm.addEventListener(
     "submit",
-    event => {
+    async function(event) {
 
-        event.preventDefault();
-
-
-        /*
-            DEMO MODE
-
-            Later this can POST to
-            Google Apps Script.
-
-            Example:
-
-            fetch("YOUR_APPS_SCRIPT_URL", {
-                method: "POST",
-                body: new FormData(form)
-            })
-        */
+      event.preventDefault();
 
 
-        formMessage.textContent =
-            "Thank you. Your appointment request has been received in this demo.";
+      const endpoint =
+        appointmentForm.getAttribute("action");
 
-        form.reset();
+
+      /*
+        Demo mode.
+
+        Replace the action URL in HTML with:
+
+        https://script.google.com/macros/s/YOUR_ID/exec
+      */
+
+      if (
+        !endpoint ||
+        endpoint.includes(
+          "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL"
+        )
+      ) {
+
+        formStatus.textContent =
+          "Demo mode: connect the Google Apps Script Web App URL to enable appointment enquiries.";
+
+        return;
+
+      }
+
+
+      formStatus.textContent =
+        "Sending your enquiry…";
+
+
+      try {
+
+        await fetch(
+          endpoint,
+          {
+            method: "POST",
+            body: new FormData(
+              appointmentForm
+            ),
+            mode: "no-cors"
+          }
+        );
+
+
+        appointmentForm.reset();
+
+
+        formStatus.textContent =
+          "Thank you. Your enquiry has been sent. The clinic will contact you to confirm availability.";
+
+      }
+
+      catch (error) {
+
+        formStatus.textContent =
+          "We could not send the enquiry. Please call or WhatsApp the clinic.";
+
+      }
 
     }
-);
+  );
+
+
+  /* =========================================================
+     CURRENT YEAR
+  ========================================================= */
+
+  document.getElementById("year")
+    .textContent =
+    new Date().getFullYear();
+
 
 </script>
 
