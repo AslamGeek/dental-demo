@@ -2429,7 +2429,7 @@
     <form
       class="appointment-form"
       id="appointmentForm"
-      action="YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL"
+      action="https://script.google.com/macros/s/AKfycbx2z94ac_RVKdg-SGzzUctMcAnvBAghxG-D9pB4CWnMIK19LwqbK0rdxk_YxcIdY8lFmA/exec"
       method="POST"
     >
 
@@ -2991,76 +2991,90 @@
   const formStatus =
     document.getElementById("formStatus");
 
+appointmentForm.addEventListener(
+  "submit",
+  async function(event) {
 
-  appointmentForm.addEventListener(
-    "submit",
-    async function(event) {
+    event.preventDefault();
 
-      event.preventDefault();
+    const endpoint =
+      appointmentForm.getAttribute("action");
+
+    const submitButton =
+      appointmentForm.querySelector(
+        'button[type="submit"]'
+      );
 
 
-      const endpoint =
-        appointmentForm.getAttribute("action");
+    if (
+      !endpoint ||
+      endpoint.includes(
+        "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL"
+      )
+    ) {
+
+      formStatus.textContent =
+        "Appointment form is not connected yet.";
+
+      return;
+    }
 
 
-      /*
-        Demo mode.
+    submitButton.disabled = true;
 
-        Replace the action URL in HTML with:
+    submitButton.textContent =
+      "Sending…";
 
-        https://script.google.com/macros/s/YOUR_ID/exec
-      */
+    formStatus.textContent = "";
 
-      if (
-        !endpoint ||
-        endpoint.includes(
-          "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL"
-        )
-      ) {
 
-        formStatus.textContent =
-          "Demo mode: connect the Google Apps Script Web App URL to enable appointment enquiries.";
+    try {
 
-        return;
+      const formData =
+        new FormData(appointmentForm);
 
-      }
+
+      await fetch(
+        endpoint,
+        {
+          method: "POST",
+          body: formData,
+          mode: "no-cors"
+        }
+      );
+
+
+      appointmentForm.reset();
 
 
       formStatus.textContent =
-        "Sending your enquiry…";
-
-
-      try {
-
-        await fetch(
-          endpoint,
-          {
-            method: "POST",
-            body: new FormData(
-              appointmentForm
-            ),
-            mode: "no-cors"
-          }
-        );
-
-
-        appointmentForm.reset();
-
-
-        formStatus.textContent =
-          "Thank you. Your enquiry has been sent. The clinic will contact you to confirm availability.";
-
-      }
-
-      catch (error) {
-
-        formStatus.textContent =
-          "We could not send the enquiry. Please call or WhatsApp the clinic.";
-
-      }
+        "Thank you. Your enquiry has been received. The clinic will contact you to confirm your appointment.";
 
     }
-  );
+
+
+    catch (error) {
+
+      console.error(error);
+
+
+      formStatus.textContent =
+        "Something went wrong. Please call or WhatsApp the clinic.";
+
+    }
+
+
+    finally {
+
+      submitButton.disabled = false;
+
+      submitButton.textContent =
+        "Request Appointment";
+
+    }
+
+  }
+);
 
 
   /* =========================================================
