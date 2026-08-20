@@ -3057,54 +3057,45 @@
 
       try {
 
-        const response =
-          await fetch(
-            GAS_ENDPOINT,
-            {
-              method: "POST",
-              body: formData
-            }
-          );
+        /*
+         * Apps Script redirects its response through
+         * script.googleusercontent.com without CORS headers,
+         * so fetch() can never reliably READ the response body.
+         * The POST itself (and the sheet write) still succeeds.
+         * no-cors sends the request without attempting to read
+         * a response we can't access anyway.
+         */
+        await fetch(
+          GAS_ENDPOINT,
+          {
+            method: "POST",
+            body: formData,
+            mode: "no-cors"
+          }
+        );
 
-        const text =
-          await response.text();
+        appointmentForm.reset();
 
-        let result = null;
-
-        try {
-          result = JSON.parse(text);
-        } catch (parseError) {
-          result = null;
-        }
-
-        if (response.ok) {
-
-          appointmentForm.reset();
-
-          formStatus.innerHTML = `
-            <strong>✓ Thank you for your enquiry</strong>
-            <br>
-            We'll contact you shortly to confirm a suitable appointment time.
-          `;
-
-        } else {
-
-          throw new Error(
-            (result && result.message) ||
-            "Server returned an error."
-          );
-
-        }
+        formStatus.innerHTML = `
+          <strong>✓ Thank you for your enquiry</strong>
+          <br>
+          We'll contact you shortly to confirm a suitable appointment time.
+        `;
 
       } catch (error) {
 
+        /*
+         * This only fires on genuine network failure
+         * (offline, DNS, blocked request) — not on Apps
+         * Script's CORS-less redirect.
+         */
         console.error(
           "SmileCare appointment enquiry:",
           error
         );
 
         formStatus.innerHTML = `
-          <strong>We couldn't confirm your enquiry.</strong>
+          <strong>We couldn't send your enquiry.</strong>
           <br>
           Please call or WhatsApp the clinic directly.
         `;
