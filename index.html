@@ -2429,21 +2429,12 @@
       service
       message
     -->
-
-    <iframe
-      name="smilecareFormFrame"
-      id="smilecareFormFrame"
-      title="Appointment submission"
-      style="display:none;"
-      aria-hidden="true"
-    ></iframe>
-
-    <form
+<form
       class="appointment-form"
       id="appointmentForm"
-      action="https://script.google.com/macros/s/AKfycbx2z94ac_RVKdg-SGzzUctMcAnvBAghxG-D9pB4CWnMIK19LwqbK0rdxk_YxcIdY8lFmA/exec"
+      action="#"
       method="POST"
-      target="smilecareFormFrame"
+      novalidate
     >
 
       <input
@@ -3143,145 +3134,133 @@
      APPOINTMENT FORM
   ========================================================= */
 
+  const GAS_ENDPOINT =
+    "https://script.google.com/macros/s/AKfycbx2z94ac_RVKdg-SGzzUctMcAnvBAghxG-D9pB4CWnMIK19LwqbK0rdxk_YxcIdY8lFmA/exec";
+
   const appointmentForm =
     document.getElementById("appointmentForm");
 
   const formStatus =
     document.getElementById("formStatus");
 
-  const formFrame =
-    document.getElementById("smilecareFormFrame");
-
-
-  let pendingLeadName = "";
-
 
   appointmentForm.addEventListener(
     "submit",
-    function(event) {
+    async function(event) {
 
-      /*
-       * The form submits to Apps Script inside a hidden iframe.
-       * This prevents the page from navigating to Apps Script.
-       */
+      /* Never allow the browser to navigate to Apps Script. */
+      event.preventDefault();
+      event.stopPropagation();
+
+      const submitButton =
+        appointmentForm.querySelector(
+          'button[type="submit"]'
+        );
+
       const name =
-        document
-          .getElementById("name")
-          .value
-          .trim();
+        document.getElementById("name").value.trim();
 
       const phone =
-        document
-          .getElementById("phone")
-          .value
-          .trim();
+        document.getElementById("phone").value.trim();
 
+      const service =
+        document.getElementById("service").value.trim();
+
+      const message =
+        document.getElementById("message").value.trim();
 
       if (!name || !phone) {
-
-        event.preventDefault();
-
         formStatus.innerHTML =
           "<strong>Please enter your name and phone number.</strong>";
-
         return;
-
       }
 
+      /*
+       * Client-generated Lead ID.
+       * Example: SC-20260820-A7K2Q9
+       * It is sent to Apps Script and stored in the sheet.
+       */
+      const now = new Date();
 
-      pendingLeadName = name;
+      const datePart =
+        now.toISOString()
+          .slice(0, 10)
+          .replace(/-/g, "");
 
+      const randomPart =
+        Math.random()
+          .toString(36)
+          .slice(2, 8)
+          .toUpperCase();
 
-      const submitButton =
-        appointmentForm.querySelector(
-          'button[type="submit"]'
-        );
+      const leadId =
+        `SC-${datePart}-${randomPart}`;
 
+      const formData = new FormData();
+
+      formData.append("leadId", leadId);
+      formData.append("name", name);
+      formData.append("phone", phone);
+      formData.append("service", service);
+      formData.append("message", message);
+      formData.append("source", "smilecare-website");
+      formData.append("page", window.location.pathname);
 
       submitButton.disabled = true;
+      submitButton.textContent = "Sending…";
+      formStatus.textContent = "Sending your enquiry…";
 
-      submitButton.textContent =
-        "Sending…";
+      try {
 
-
-      formStatus.textContent =
-        "Sending your enquiry…";
-
-    }
-  );
-
-
-  /*
-   * Apps Script returns a small HTML response inside the hidden
-   * iframe. That response sends the real Lead ID back to this page
-   * using window.postMessage().
-   */
-  window.addEventListener(
-    "message",
-    function(event) {
-
-      if (
-        !event.data ||
-        event.data.type !==
-          "smilecare-lead-response"
-      ) {
-        return;
-      }
-
-
-      const submitButton =
-        appointmentForm.querySelector(
-          'button[type="submit"]'
+        /*
+         * no-cors is intentional. Apps Script is hosted on a
+         * different origin. fetch() sends the POST without ever
+         * navigating the patient away from the SmileCare page.
+         */
+        await fetch(
+          GAS_ENDPOINT,
+          {
+            method: "POST",
+            body: formData,
+            mode: "no-cors"
+          }
         );
 
-
-      submitButton.disabled = false;
-
-      submitButton.textContent =
-        "Request Appointment";
-
-
-      if (event.data.success) {
-
-        const leadId =
-          event.data.leadId || "";
-
-
         appointmentForm.reset();
-
 
         formStatus.innerHTML = `
           <strong>✓ Enquiry received</strong>
           <br>
-          Thank you, ${escapeHtml(pendingLeadName)}.
+          Thank you, ${escapeHtml(name)}.
           Your enquiry ID is
           <strong>${escapeHtml(leadId)}</strong>.
           <br>
-          We'll contact you shortly to confirm
-          a suitable appointment time.
+          We'll contact you shortly to confirm a suitable appointment time.
         `;
 
+      } catch (error) {
 
-      } else {
+        console.error(
+          "SmileCare appointment enquiry:",
+          error
+        );
 
         formStatus.innerHTML = `
           <strong>We couldn't send your enquiry.</strong>
           <br>
-          ${escapeHtml(
-            event.data.message ||
-            "Please call or WhatsApp the clinic directly."
-          )}
+          Please call or WhatsApp the clinic directly.
         `;
+
+      } finally {
+
+        submitButton.disabled = false;
+        submitButton.textContent = "Request Appointment";
 
       }
 
     }
   );
 
-
-  /* =========================================================
-     ESCAPE USER INPUT
-  ========================================================= */
 
   function escapeHtml(value) {
 
