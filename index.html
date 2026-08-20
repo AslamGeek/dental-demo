@@ -1717,11 +1717,6 @@
     </div>
 
 
-    <!--
-      Inline SVG means no image dependency.
-      Replace this entire block with a real clinic/dentist image
-      when the actual clinic assets are available.
-    -->
 
     <div class="hero-visual">
 
@@ -2422,11 +2417,8 @@
     <!--
       GOOGLE APPS SCRIPT READY
 
-      Replace:
-
-      YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL
-
-      with the deployed Apps Script Web App URL.
+      The form submits to the deployed Apps Script Web App
+      inside a hidden iframe so the page never navigates away.
 
       Fields sent:
 
@@ -2438,11 +2430,20 @@
       message
     -->
 
+    <iframe
+      name="smilecareFormFrame"
+      id="smilecareFormFrame"
+      title="Appointment submission"
+      style="display:none;"
+      aria-hidden="true"
+    ></iframe>
+
     <form
       class="appointment-form"
       id="appointmentForm"
       action="https://script.google.com/macros/s/AKfycbx2z94ac_RVKdg-SGzzUctMcAnvBAghxG-D9pB4CWnMIK19LwqbK0rdxk_YxcIdY8lFmA/exec"
       method="POST"
+      target="smilecareFormFrame"
     >
 
       <input
@@ -2993,360 +2994,305 @@
 
 
   /* =========================================================
+     GOOGLE APPS SCRIPT
+  ========================================================= */
+
+  /* =========================================================
+     SERVICE DATA
+  ========================================================= */
+
+  const serviceData = {
+    checkup: {
+      title: "Dental Check-up",
+      question: "What happens during a check-up?",
+      answer:
+        "We examine your teeth and gums, discuss your symptoms and recommend only the next appropriate step."
+    },
+
+    cleaning: {
+      title: "Teeth Cleaning",
+      question: "How often should I get my teeth cleaned?",
+      answer:
+        "It depends on your oral health and buildup. During an examination, we can suggest an appropriate cleaning schedule."
+    },
+
+    fillings: {
+      title: "Dental Fillings",
+      question: "Will a filling hurt?",
+      answer:
+        "We use local anaesthesia where appropriate and explain the procedure before starting. Treatment is planned around your comfort."
+    },
+
+    "root-canal": {
+      title: "Root Canal Care",
+      question: "When might a root canal be needed?",
+      answer:
+        "Persistent tooth pain, sensitivity or infection can be signs. An examination and dental imaging may be needed to confirm the cause."
+    },
+
+    crowns: {
+      title: "Crowns & Bridges",
+      question: "Why might I need a crown?",
+      answer:
+        "A crown can protect and restore a tooth that has lost substantial structure. We assess the tooth before recommending one."
+    }
+  };
+
+
+  /* =========================================================
+     SERVICE CAROUSEL
+  ========================================================= */
+
+  const serviceTrack =
+    document.getElementById("serviceTrack");
+
+  const serviceCards =
+    Array.from(
+      document.querySelectorAll(".service-card")
+    );
+
+  const faq =
+    document.getElementById("serviceFaq");
+
+
+  function selectService(card) {
+
+    serviceCards.forEach(
+      item => item.classList.remove("active")
+    );
+
+    card.classList.add("active");
+
+
+    const key =
+      card.dataset.service;
+
+
+    const service =
+      serviceData[key];
+
+
+    faq.querySelector(".faq-label")
+      .textContent =
+      service.title;
+
+
+    faq.querySelector("h3")
+      .textContent =
+      service.question;
+
+
+    faq.querySelector(
+      "p:not(.faq-label)"
+    ).textContent =
+      service.answer;
+
+
+    card.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "center"
+    });
+
+  }
+
+
+  serviceCards.forEach(card => {
+
+    card.addEventListener(
+      "click",
+      () => selectService(card)
+    );
+
+  });
+
+
+  document
+    .getElementById("previousService")
+    .addEventListener(
+      "click",
+      () => {
+
+        serviceTrack.scrollBy({
+          left:
+            -serviceTrack.clientWidth * .85,
+          behavior: "smooth"
+        });
+
+      }
+    );
+
+
+  document
+    .getElementById("nextService")
+    .addEventListener(
+      "click",
+      () => {
+
+        serviceTrack.scrollBy({
+          left:
+            serviceTrack.clientWidth * .85,
+          behavior: "smooth"
+        });
+
+      }
+    );
+
+
+  /* =========================================================
      APPOINTMENT FORM
   ========================================================= */
 
   const appointmentForm =
     document.getElementById("appointmentForm");
 
-
   const formStatus =
     document.getElementById("formStatus");
 
-appointmentForm.addEventListener(
-  "submit",
-  async function(event) {
-
-    event.preventDefault();
+  const formFrame =
+    document.getElementById("smilecareFormFrame");
 
 
-    /* =====================================================
-       ELEMENTS
-    ===================================================== */
-
-    const submitButton =
-      appointmentForm.querySelector(
-        'button[type="submit"]'
-      );
+  let pendingLeadName = "";
 
 
-    const endpoint =
-      appointmentForm.getAttribute(
-        "action"
-      );
-
-
-    /* =====================================================
-       CHECK BACKEND CONFIGURATION
-    ===================================================== */
-
-    if (
-      !endpoint ||
-      endpoint.includes(
-        "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL"
-      )
-    ) {
-
-      formStatus.textContent =
-        "Appointment form is not connected yet.";
-
-      return;
-
-    }
-
-
-    /* =====================================================
-       CAPTURE FORM VALUES BEFORE RESET
-    ===================================================== */
-
-    const name =
-      document
-        .getElementById("name")
-        .value
-        .trim();
-
-
-    const phone =
-      document
-        .getElementById("phone")
-        .value
-        .trim();
-
-
-    const service =
-      document
-        .getElementById("service")
-        .value
-        .trim();
-
-
-    const message =
-      document
-        .getElementById("message")
-        .value
-        .trim();
-
-
-    /* =====================================================
-       BUTTON STATE
-    ===================================================== */
-
-    submitButton.disabled = true;
-
-    submitButton.textContent =
-      "Sending…";
-
-
-    formStatus.textContent =
-      "Sending your enquiry…";
-
-
-    /* =====================================================
-       BUILD FORM DATA
-    ===================================================== */
-
-    const formData =
-      new FormData();
-
-
-    formData.append(
-      "name",
-      name
-    );
-
-
-    formData.append(
-      "phone",
-      phone
-    );
-
-
-    formData.append(
-      "service",
-      service
-    );
-
-
-    formData.append(
-      "message",
-      message
-    );
-
-
-    formData.append(
-      "source",
-      "smilecare-website"
-    );
-
-
-    formData.append(
-      "page",
-      window.location.pathname
-    );
-
-
-    /* =====================================================
-       SEND TO GOOGLE APPS SCRIPT
-    ===================================================== */
-
-    try {
-
-      await fetch(
-        endpoint,
-        {
-          method: "POST",
-
-          body: formData,
-
-          mode: "no-cors"
-        }
-      );
-
+  appointmentForm.addEventListener(
+    "submit",
+    function(event) {
 
       /*
-       * IMPORTANT:
-       *
-       * Because no-cors prevents reading the Apps Script
-       * response, we use the locally captured form values
-       * for the confirmation.
-       *
-       * The actual Lead ID is generated by Apps Script
-       * and stored in Google Sheets.
+       * The form submits to Apps Script inside a hidden iframe.
+       * This prevents the page from navigating to Apps Script.
        */
+      const name =
+        document
+          .getElementById("name")
+          .value
+          .trim();
+
+      const phone =
+        document
+          .getElementById("phone")
+          .value
+          .trim();
 
 
-      /* ===================================================
-         RESET FORM
-      =================================================== */
+      if (!name || !phone) {
 
-      appointmentForm.reset();
+        event.preventDefault();
 
+        formStatus.innerHTML =
+          "<strong>Please enter your name and phone number.</strong>";
 
-      /* ===================================================
-         SUCCESS MESSAGE
-      =================================================== */
+        return;
 
-      formStatus.innerHTML = `
-
-        <strong>
-          ✓ Enquiry received
-        </strong>
-
-        <br>
-
-        Thank you,
-        ${escapeHtml_(name)}.
-
-        We'll contact you shortly
-        to confirm a suitable appointment time.
-
-      `;
+      }
 
 
-    }
+      pendingLeadName = name;
 
 
-    catch (error) {
+      const submitButton =
+        appointmentForm.querySelector(
+          'button[type="submit"]'
+        );
 
-      console.error(error);
+
+      submitButton.disabled = true;
+
+      submitButton.textContent =
+        "Sending…";
 
 
-      formStatus.innerHTML = `
-
-        <strong>
-          We couldn't send your enquiry.
-        </strong>
-
-        <br>
-
-        Please call or WhatsApp the clinic
-        directly.
-
-      `;
+      formStatus.textContent =
+        "Sending your enquiry…";
 
     }
+  );
 
 
-    finally {
+  /*
+   * Apps Script returns a small HTML response inside the hidden
+   * iframe. That response sends the real Lead ID back to this page
+   * using window.postMessage().
+   */
+  window.addEventListener(
+    "message",
+    function(event) {
+
+      if (
+        !event.data ||
+        event.data.type !==
+          "smilecare-lead-response"
+      ) {
+        return;
+      }
+
+
+      const submitButton =
+        appointmentForm.querySelector(
+          'button[type="submit"]'
+        );
+
 
       submitButton.disabled = false;
 
       submitButton.textContent =
         "Request Appointment";
 
+
+      if (event.data.success) {
+
+        const leadId =
+          event.data.leadId || "";
+
+
+        appointmentForm.reset();
+
+
+        formStatus.innerHTML = `
+          <strong>✓ Enquiry received</strong>
+          <br>
+          Thank you, ${escapeHtml(pendingLeadName)}.
+          Your enquiry ID is
+          <strong>${escapeHtml(leadId)}</strong>.
+          <br>
+          We'll contact you shortly to confirm
+          a suitable appointment time.
+        `;
+
+
+      } else {
+
+        formStatus.innerHTML = `
+          <strong>We couldn't send your enquiry.</strong>
+          <br>
+          ${escapeHtml(
+            event.data.message ||
+            "Please call or WhatsApp the clinic directly."
+          )}
+        `;
+
+      }
+
     }
+  );
+
+
+  /* =========================================================
+     ESCAPE USER INPUT
+  ========================================================= */
+
+  function escapeHtml(value) {
+
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
 
   }
-);
-
-    event.preventDefault();
-
-    const endpoint =
-      appointmentForm.getAttribute("action");
-
-    const submitButton =
-      appointmentForm.querySelector(
-        'button[type="submit"]'
-      );
-
-
-    if (
-      !endpoint ||
-      endpoint.includes(
-        "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL"
-      )
-    ) {
-
-      formStatus.textContent =
-        "Appointment form is not connected yet.";
-
-      return;
-    }
-
-
-    submitButton.disabled = true;
-
-    submitButton.textContent =
-      "Sending…";
-
-    formStatus.textContent = "";
-
-
-    try {
-
-      const formData =
-        new FormData(appointmentForm);
-
-
-      await fetch(
-        endpoint,
-        {
-          method: "POST",
-          body: formData,
-          mode: "no-cors"
-        }
-      );
-
-
-      appointmentForm.reset();
-
-
-      const submittedName =
-  document.getElementById("name").value.trim();
-
-
-formStatus.innerHTML = `
-  <strong>✓ Enquiry received</strong><br>
-  Thank you${submittedName ? ", " + submittedName : ""}.
-  We'll contact you shortly to confirm a suitable appointment time.
-`;
-
-    }
-
-
-    catch (error) {
-
-      console.error(error);
-
-
-      formStatus.textContent =
-        "Something went wrong. Please call or WhatsApp the clinic.";
-
-    }
-
-
-    finally {
-
-      submitButton.disabled = false;
-
-      submitButton.textContent =
-        "Request Appointment";
-
-    }
-
-  }
-);
-
-    function escapeHtml_(value) {
-
-  return String(value)
-
-    .replace(
-      /&/g,
-      "&amp;"
-    )
-
-    .replace(
-      /</g,
-      "&lt;"
-    )
-
-    .replace(
-      />/g,
-      "&gt;"
-    )
-
-    .replace(
-      /"/g,
-      "&quot;"
-    )
-
-    .replace(
-      /'/g,
-      "&#039;"
-    );
-
-}
 
 
   /* =========================================================
