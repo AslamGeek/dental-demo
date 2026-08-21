@@ -2432,31 +2432,14 @@
 <form
       class="appointment-form"
       id="appointmentForm"
-      action="https://script.google.com/macros/s/AKfycbyijN-_uCFEjul2OUgoeDSxQNiCwCeQf0PT0of8GU4lHvYnoPqBRTFZKQYRFN9nEweSfw/exec"
-      method="POST"
       novalidate
     >
 
-      <input
-        type="hidden"
-        name="source"
-        value="smilecare-website"
-      >
-
-      <input
-        type="hidden"
-        name="page"
-        value="/"
-      >
-
-
       <div class="form-group">
-
         <label for="name">
           Name
           <span class="required">*</span>
         </label>
-
         <input
           id="name"
           name="name"
@@ -2464,109 +2447,62 @@
           autocomplete="name"
           required
         >
-
       </div>
 
-
       <div class="form-group">
-
         <label for="phone">
           Phone
           <span class="required">*</span>
         </label>
-
         <input
           id="phone"
           name="phone"
           type="tel"
           inputmode="numeric"
           autocomplete="tel"
-          pattern="[0-9]{10,15}"
           maxlength="15"
           required
         >
-
       </div>
 
-
       <div class="form-group">
-
         <label for="service">
           What do you need help with?
         </label>
-
-        <select
-          id="service"
-          name="service"
-        >
-
-          <option value="">
-            Select an option
-          </option>
-
-          <option>
-            Dental Check-up
-          </option>
-
-          <option>
-            Teeth Cleaning
-          </option>
-
-          <option>
-            Dental Fillings
-          </option>
-
-          <option>
-            Root Canal Care
-          </option>
-
-          <option>
-            Crowns & Bridges
-          </option>
-
-          <option>
-            Other
-          </option>
-
+        <select id="service" name="service">
+          <option value="">Select an option</option>
+          <option>Dental Check-up</option>
+          <option>Teeth Cleaning</option>
+          <option>Dental Fillings</option>
+          <option>Root Canal Care</option>
+          <option>Crowns & Bridges</option>
+          <option>Other</option>
         </select>
-
       </div>
 
-
       <div class="form-group">
-
         <label for="message">
           Message
-          <span class="optional">
-            (optional)
-          </span>
+          <span class="optional">(optional)</span>
         </label>
-
         <textarea
           id="message"
           name="message"
           rows="3"
-          placeholder="Tell us briefly what’s bothering you."
+          placeholder="Tell us briefly what's bothering you."
         ></textarea>
-
       </div>
 
-
-      <button
-        class="btn btn-primary btn-full"
-        type="submit"
-      >
+      <button class="btn btn-primary btn-full" type="submit" id="submitButton">
         Request Appointment
       </button>
 
-
       <p class="form-note">
-        We’ll contact you to confirm availability.
+        We'll contact you to confirm availability.
         No payment is taken through this form.
       </p>
 
-
-            <p
+      <p
         class="form-status"
         id="formStatus"
         role="status"
@@ -2844,6 +2780,15 @@
      GOOGLE APPS SCRIPT
   ========================================================= */
 
+
+  /* =========================================================
+     CONFIG — update this if you redeploy the Apps Script
+  ========================================================= */
+
+  const GAS_ENDPOINT =
+    "https://script.google.com/macros/s/AKfycby3Z0YZH16DGhPatOqfNf8OMPXTDVYHGk-sAV5aNJ7u-XO9RbE25U-n9FqVgg0oHFagUA/exec";
+
+
   /* =========================================================
      SERVICE DATA
   ========================================================= */
@@ -2852,36 +2797,27 @@
     checkup: {
       title: "Dental Check-up",
       question: "What happens during a check-up?",
-      answer:
-        "We examine your teeth and gums, discuss your symptoms and recommend only the next appropriate step."
+      answer: "We examine your teeth and gums, discuss your symptoms and recommend only the next appropriate step."
     },
-
     cleaning: {
       title: "Teeth Cleaning",
       question: "How often should I get my teeth cleaned?",
-      answer:
-        "It depends on your oral health and buildup. During an examination, we can suggest an appropriate cleaning schedule."
+      answer: "It depends on your oral health and buildup. During an examination, we can suggest an appropriate cleaning schedule."
     },
-
     fillings: {
       title: "Dental Fillings",
       question: "Will a filling hurt?",
-      answer:
-        "We use local anaesthesia where appropriate and explain the procedure before starting. Treatment is planned around your comfort."
+      answer: "We use local anaesthesia where appropriate and explain the procedure before starting. Treatment is planned around your comfort."
     },
-
     "root-canal": {
       title: "Root Canal Care",
       question: "When might a root canal be needed?",
-      answer:
-        "Persistent tooth pain, sensitivity or infection can be signs. An examination and dental imaging may be needed to confirm the cause."
+      answer: "Persistent tooth pain, sensitivity or infection can be signs. An examination and dental imaging may be needed to confirm the cause."
     },
-
     crowns: {
       title: "Crowns & Bridges",
       question: "Why might I need a crown?",
-      answer:
-        "A crown can protect and restore a tooth that has lost substantial structure. We assess the tooth before recommending one."
+      answer: "A crown can protect and restore a tooth that has lost substantial structure. We assess the tooth before recommending one."
     }
   };
 
@@ -2890,273 +2826,142 @@
      SERVICE CAROUSEL
   ========================================================= */
 
-  const serviceTrack =
-    document.getElementById("serviceTrack");
-
-  const serviceCards =
-    Array.from(
-      document.querySelectorAll(".service-card")
-    );
-
-  const faq =
-    document.getElementById("serviceFaq");
-
+  const serviceTrack = document.getElementById("serviceTrack");
+  const serviceCards = Array.from(document.querySelectorAll(".service-card"));
+  const faq = document.getElementById("serviceFaq");
 
   function selectService(card) {
-
-    serviceCards.forEach(
-      item => item.classList.remove("active")
-    );
-
+    serviceCards.forEach(item => item.classList.remove("active"));
     card.classList.add("active");
 
+    const service = serviceData[card.dataset.service];
 
-    const key =
-      card.dataset.service;
+    faq.querySelector(".faq-label").textContent = service.title;
+    faq.querySelector("h3").textContent = service.question;
+    faq.querySelector("p:not(.faq-label)").textContent = service.answer;
 
-
-    const service =
-      serviceData[key];
-
-
-    faq.querySelector(".faq-label")
-      .textContent =
-      service.title;
-
-
-    faq.querySelector("h3")
-      .textContent =
-      service.question;
-
-
-    faq.querySelector(
-      "p:not(.faq-label)"
-    ).textContent =
-      service.answer;
-
-
-    card.scrollIntoView({
-      behavior: "smooth",
-      block: "nearest",
-      inline: "center"
-    });
-
+    card.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
   }
 
-
   serviceCards.forEach(card => {
-
-    card.addEventListener(
-      "click",
-      () => selectService(card)
-    );
-
+    card.addEventListener("click", () => selectService(card));
   });
 
+  document.getElementById("previousService").addEventListener("click", () => {
+    serviceTrack.scrollBy({ left: -serviceTrack.clientWidth * .85, behavior: "smooth" });
+  });
 
-  document
-    .getElementById("previousService")
-    .addEventListener(
-      "click",
-      () => {
-
-        serviceTrack.scrollBy({
-          left:
-            -serviceTrack.clientWidth * .85,
-          behavior: "smooth"
-        });
-
-      }
-    );
-
-
-  document
-    .getElementById("nextService")
-    .addEventListener(
-      "click",
-      () => {
-
-        serviceTrack.scrollBy({
-          left:
-            serviceTrack.clientWidth * .85,
-          behavior: "smooth"
-        });
-
-      }
-    );
+  document.getElementById("nextService").addEventListener("click", () => {
+    serviceTrack.scrollBy({ left: serviceTrack.clientWidth * .85, behavior: "smooth" });
+  });
 
 
   /* =========================================================
      APPOINTMENT FORM
   ========================================================= */
 
-    const appointmentForm =
-    document.getElementById("appointmentForm");
+  const appointmentForm = document.getElementById("appointmentForm");
+  const formStatus = document.getElementById("formStatus");
+  const submitButton = document.getElementById("submitButton");
+  const phoneInput = document.getElementById("phone");
 
-  const formStatus =
-    document.getElementById("formStatus");
-
-  const phoneInput =
-    document.getElementById("phone");
-
-  phoneInput.addEventListener("input", function() {
+  phoneInput.addEventListener("input", function () {
     this.value = this.value.replace(/[^0-9]/g, "");
   });
 
+  function setStatus(message, isError) {
+    formStatus.innerHTML = message;
+    formStatus.style.background = isError ? "#fdeceb" : "#eef9f6";
+    formStatus.style.color = isError ? "#a63b32" : "#086e69";
+  }
 
-    const GAS_ENDPOINT =
-    "https://script.google.com/macros/s/AKfycbyijN-_uCFEjul2OUgoeDSxQNiCwCeQf0PT0of8GU4lHvYnoPqBRTFZKQYRFN9nEweSfw/exec";
+  appointmentForm.addEventListener("submit", async function (event) {
 
-  const submitButton =
-    appointmentForm.querySelector(
-      'button[type="submit"]'
-    );
+    event.preventDefault();
 
-  appointmentForm.addEventListener(
-    "submit",
-    async function(event) {
+    const name = document.getElementById("name").value.trim();
+    const phone = phoneInput.value.trim();
+    const service = document.getElementById("service").value.trim();
+    const message = document.getElementById("message").value.trim();
 
-      event.preventDefault();
+    if (!name || !phone) {
+      setStatus("<strong>Please enter your name and phone number.</strong>", true);
+      return;
+    }
 
-      const name =
-        document.getElementById("name").value.trim();
+    if (!/^[0-9]{10,15}$/.test(phone)) {
+      setStatus("<strong>Please enter a valid phone number (digits only).</strong>", true);
+      return;
+    }
 
-      const phone =
-        document.getElementById("phone").value.trim();
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("phone", phone);
+    formData.append("service", service);
+    formData.append("message", message);
+    formData.append("source", "smilecare-website");
+    formData.append("page", window.location.pathname);
 
-      const service =
-        document.getElementById("service").value.trim();
+    submitButton.disabled = true;
+    submitButton.textContent = "Sending…";
+    setStatus("Sending your enquiry…", false);
 
-      const message =
-        document.getElementById("message").value.trim();
+    try {
 
-      if (!name || !phone) {
-        formStatus.innerHTML =
-          "<strong>Please enter your name and phone number.</strong>";
-        return;
-      }
+      const response = await fetch(GAS_ENDPOINT, {
+        method: "POST",
+        body: formData
+      });
 
-      if (!/^[0-9]{10,15}$/.test(phone)) {
-        formStatus.innerHTML =
-          "<strong>Please enter a valid phone number (digits only).</strong>";
-        return;
-      }
-
-      const formData = new FormData();
-
-      formData.append("name", name);
-      formData.append("phone", phone);
-      formData.append("service", service);
-      formData.append("message", message);
-      formData.append("source", "smilecare-website");
-      formData.append("page", window.location.pathname);
-
-      submitButton.disabled = true;
-      submitButton.textContent = "Sending…";
-      formStatus.textContent = "Sending your enquiry…";
+      let result = null;
 
       try {
+        result = await response.json();
+      } catch (parseError) {
+        result = null;
+      }
 
-        const response =
-          await fetch(
-            GAS_ENDPOINT,
-            {
-              method: "POST",
-              body: formData,
-              redirect: "follow"
-            }
-          );
+      if (result && result.success === true) {
 
-        const text =
-          await response.text();
+        appointmentForm.reset();
 
-        let result = null;
-
-        try {
-          result = JSON.parse(text);
-        } catch (parseError) {
-          result = null;
-        }
-
-        console.log(
-          "SmileCare enquiry response:",
-          response.status,
-          text
+        setStatus(
+          "<strong>✓ Thank you for your enquiry</strong><br>" +
+          "We'll contact you shortly to confirm a suitable appointment time.",
+          false
         );
 
-        /*
-         * Trust an explicit success:true from the server,
-         * OR a plain HTTP 200 even if we couldn't parse the
-         * body (Apps Script's redirect sometimes returns a
-         * body fetch() can't cleanly hand us as JSON, even
-         * though the request itself succeeded).
-         */
-        if (
-          (result && result.success === true) ||
-          (response.ok && result === null && response.status === 200)
-        ) {
+      } else {
 
-          appointmentForm.reset();
-
-          formStatus.innerHTML = `
-            <strong>✓ Thank you for your enquiry</strong>
-            <br>
-            We'll contact you shortly to confirm a suitable appointment time.
-          `;
-
-        } else {
-
-          throw new Error(
-            (result && result.message) ||
-            "Unexpected response from server."
-          );
-
-        }
-
-      } catch (error) {
-
-        console.error(
-          "SmileCare appointment enquiry:",
-          error
-        );
-
-        formStatus.innerHTML = `
-          <strong>⚠ We couldn't confirm your enquiry was received.</strong>
-          <br>
-          Please call or WhatsApp the clinic directly so we don't miss you.
-        `;
-
-      } finally {
-
-        submitButton.disabled = false;
-        submitButton.textContent = "Request Appointment";
+        throw new Error((result && result.message) || "Unexpected server response.");
 
       }
 
+    } catch (error) {
+
+      console.error("SmileCare appointment enquiry failed:", error);
+
+      setStatus(
+        "<strong>⚠ We couldn't confirm your enquiry.</strong><br>" +
+        "Please call or WhatsApp the clinic directly so we don't miss you.",
+        true
+      );
+
+    } finally {
+
+      submitButton.disabled = false;
+      submitButton.textContent = "Request Appointment";
+
     }
-  );
 
-
-  function escapeHtml(value) {
-
-    return String(value)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
-
-  }
+  });
 
 
   /* =========================================================
      CURRENT YEAR
   ========================================================= */
 
-  document.getElementById("year")
-    .textContent =
-    new Date().getFullYear();
-
+  document.getElementById("year").textContent = new Date().getFullYear();
 
 </script>
 
