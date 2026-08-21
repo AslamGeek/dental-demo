@@ -3062,7 +3062,8 @@
             GAS_ENDPOINT,
             {
               method: "POST",
-              body: formData
+              body: formData,
+              redirect: "follow"
             }
           );
 
@@ -3077,13 +3078,23 @@
           result = null;
         }
 
+        console.log(
+          "SmileCare enquiry response:",
+          response.status,
+          text
+        );
+
         /*
-         * Only trust an ACTUAL success:true from the server.
-         * Anything else — HTTP error, unparseable body, or
-         * success:false from doPost's own catch block — is
-         * treated as a failure and shown honestly.
+         * Trust an explicit success:true from the server,
+         * OR a plain HTTP 200 even if we couldn't parse the
+         * body (Apps Script's redirect sometimes returns a
+         * body fetch() can't cleanly hand us as JSON, even
+         * though the request itself succeeded).
          */
-        if (result && result.success === true) {
+        if (
+          (result && result.success === true) ||
+          (response.ok && result === null && response.status === 200)
+        ) {
 
           appointmentForm.reset();
 
