@@ -3057,47 +3057,62 @@
 
       try {
 
+        const response =
+          await fetch(
+            GAS_ENDPOINT,
+            {
+              method: "POST",
+              body: formData
+            }
+          );
+
+        const text =
+          await response.text();
+
+        let result = null;
+
+        try {
+          result = JSON.parse(text);
+        } catch (parseError) {
+          result = null;
+        }
+
         /*
-         * Apps Script redirects its response through
-         * script.googleusercontent.com without CORS headers,
-         * so fetch() can never reliably READ the response body.
-         * The POST itself (and the sheet write) still succeeds.
-         * no-cors sends the request without attempting to read
-         * a response we can't access anyway.
+         * Only trust an ACTUAL success:true from the server.
+         * Anything else — HTTP error, unparseable body, or
+         * success:false from doPost's own catch block — is
+         * treated as a failure and shown honestly.
          */
-        await fetch(
-          GAS_ENDPOINT,
-          {
-            method: "POST",
-            body: formData,
-            mode: "no-cors"
-          }
-        );
+        if (result && result.success === true) {
 
-        appointmentForm.reset();
+          appointmentForm.reset();
 
-        formStatus.innerHTML = `
-          <strong>✓ Thank you for your enquiry</strong>
-          <br>
-          We'll contact you shortly to confirm a suitable appointment time.
-        `;
+          formStatus.innerHTML = `
+            <strong>✓ Thank you for your enquiry</strong>
+            <br>
+            We'll contact you shortly to confirm a suitable appointment time.
+          `;
+
+        } else {
+
+          throw new Error(
+            (result && result.message) ||
+            "Unexpected response from server."
+          );
+
+        }
 
       } catch (error) {
 
-        /*
-         * This only fires on genuine network failure
-         * (offline, DNS, blocked request) — not on Apps
-         * Script's CORS-less redirect.
-         */
         console.error(
           "SmileCare appointment enquiry:",
           error
         );
 
         formStatus.innerHTML = `
-          <strong>We couldn't send your enquiry.</strong>
+          <strong>⚠ We couldn't confirm your enquiry was received.</strong>
           <br>
-          Please call or WhatsApp the clinic directly.
+          Please call or WhatsApp the clinic directly so we don't miss you.
         `;
 
       } finally {
